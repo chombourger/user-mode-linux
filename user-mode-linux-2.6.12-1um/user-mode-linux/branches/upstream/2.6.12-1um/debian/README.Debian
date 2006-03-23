@@ -1,0 +1,57 @@
+Kernel modules
+--------------
+Modules are installed in /usr/lib/uml/modules/<version>.  The easiest way to
+get to them from within UML is to use hostfs, e.g.:
+
+mount -t hostfs -o /usr/lib/uml/modules hostfs /lib/modules
+
+or:
+
+echo "hostfs /lib/modules hostfs /usr/lib/uml/modules 0 0" >> /etc/fstab
+
+or copy them into your root filesystem (rootstrap can do this automatically).
+
+Kernel configuration notes
+--------------------------
+
+Unlike the UML binaries distributed from the official UML website,
+this kernel is configured not to mount DevFS by default, in order to
+work correctly with a base Debian installation under UML.
+
+If you are using UML rootfs images from the UML website, or need DevFS
+for any other reason, pass "devfs=mount" on the UML command line.
+
+Compiling a Custom UML package
+------------------------------
+
+You must have APT configured such that 'apt-get source' works in order
+to do this the easy way.  See sources.list(5).
+
+1. $ apt-get source user-mode-linux
+
+2. # apt-get build-dep user-mode-linux
+
+   (must be run as root)
+
+3. $ cd user-mode-linux-UMLVERSION
+
+4. $ debian/rules unpack
+
+   Or, unpack other kernel source and update kernel_version in
+   debian/rules
+
+5. $ debian/rules patch
+
+   Or, apply a UML patch by hand and touch patch-stamp
+
+5. $ cd kernel-source-KVERSION
+
+6. $ make config ARCH=um # etc.
+
+   All makefile commands must include ARCH=um
+
+7. $ cd ..
+
+8. $ dpkg-buildpackage -rfakeroot -nc -uc
+
+ -- Matt Zimmerman <mdz@debian.org>, Fri Jan  2 14:29:13 2004

@@ -1,0 +1,11 @@
+diff -ru kernel-source-2.4.23.orig-uml/arch/um/config.in kernel-source-2.4.23/arch/um/config.in
+--- kernel-source-2.4.23.orig-uml/arch/um/config.in	2003-12-30 09:13:10.000000000 -0800
++++ kernel-source-2.4.23/arch/um/config.in	2003-12-30 09:12:23.000000000 -0800
+@@ -89,6 +89,7 @@
+ 
+ source drivers/mtd/Config.in
+ 
++source crypto/Config.in
+ source lib/Config.in
+ 
+ mainmenu_option next_comment

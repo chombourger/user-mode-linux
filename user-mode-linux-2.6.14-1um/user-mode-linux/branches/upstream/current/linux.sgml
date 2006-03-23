@@ -1,0 +1,472 @@
+<!doctype refentry PUBLIC "-//OASIS//DTD DocBook V4.1//EN" [
+
+<!-- Process this file with docbook-to-man to generate an nroff manual
+     page: `docbook-to-man manpage.sgml > manpage.1'.  You may view
+     the manual page with: `docbook-to-man manpage.sgml | nroff -man |
+     less'.  A typical entry in a Makefile or Makefile.am is:
+
+manpage.1: manpage.sgml
+	docbook-to-man $< > $@
+  -->
+
+  <!-- Fill in your name for FIRSTNAME and SURNAME. -->
+  <!ENTITY dhfirstname "<firstname>Matt</firstname>">
+  <!ENTITY dhsurname   "<surname>Zimmerman</surname>">
+  <!-- Please adjust the date whenever revising the manpage. -->
+  <!ENTITY dhdate      "<date>December  6, 2001</date>">
+  <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
+       allowed: see man(7), man(1). -->
+  <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
+  <!ENTITY dhemail     "<email>mdz@debian.org</email>">
+  <!ENTITY dhusername  "Matt Zimmerman">
+  <!ENTITY dhucpackage "<refentrytitle>LINUX</refentrytitle>">
+  <!ENTITY dhpackage   "linux">
+
+  <!ENTITY debian      "<productname>Debian GNU/Linux</productname>">
+  <!ENTITY gnu         "<acronym>GNU</acronym>">
+]>
+
+<refentry>
+  <refentryinfo>
+    <address>
+      &dhemail;
+    </address>
+    <author>
+      &dhfirstname;
+      &dhsurname;
+    </author>
+    <copyright>
+      <year>2001</year>
+      <holder>&dhusername;</holder>
+    </copyright>
+    &dhdate;
+  </refentryinfo>
+  <refmeta>
+    &dhucpackage;
+
+    &dhsection;
+  </refmeta>
+  <refnamediv>
+    <refname>&dhpackage;</refname>
+
+    <refpurpose>User-mode Linux</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>linux</command>
+      <arg choice=opt rep=repeat><replaceable>options</replaceable></arg>
+
+    </cmdsynopsis>
+  </refsynopsisdiv>
+  <refsect1>
+    <title>DESCRIPTION</title>
+
+    <para>This manual page briefly documents User-mode Linux.</para>
+
+    <para>This manual page was written for the &debian; distribution
+      because the original program does not have a manual page.  Check
+      <command>linux --help</command> for an up-to-date synopsis.</para>
+
+  </refsect1>
+  <refsect1>
+    <title>OPTIONS</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>mem=<replaceable>memory</replaceable>
+        </term>
+        <listitem>
+          <para>
+            This controls how much "physical" memory the kernel
+            allocates for the system. The size is specified as a
+            number followed by one of 'k', 'K', 'm', 'M', which have
+            the obvious meanings.  This is not related to the amount
+            of memory in the physical machine. It can be more, and the
+            excess, if it's ever used, will just be swapped out.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iomem=<replaceable>name</replaceable>,<replaceable>file</replaceable>
+        </term>
+        <listitem>
+          <para>
+            Configure <replaceable>file</replaceable> as a named IO
+            memory region named <replaceable>name</replaceable>.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>gdb-pid=<replaceable>pid</replaceable></term>
+        <listitem>
+          <para>
+            gdb-pid is used to attach an external debugger to UML.
+            This may be an already-running gdb or a debugger-like
+            process like strace.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>debugtrace</term>
+        <listitem>
+          <para>
+            Causes the tracing thread to pause until it is attached by
+            a debugger and continued.  This is mostly for debugging
+            crashes early during boot, and should be pretty much
+            obsoleted by the debug switch.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>honeypot</term>
+        <listitem>
+          <para>
+            This makes UML put process stacks in the same location as
+            they are on the host, allowing exploits such as stack
+            smashes to work against UML.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>debug</term>
+        <listitem>
+          <para>
+            Starts up the kernel under the control of gdb. See the
+            kernel debugging tutorial and the debugging session pages
+            in the user-mode-linux-doc package for more information.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>root=<replaceable>file</replaceable></term>
+        <listitem>
+          <para>
+            This is actually used by the generic kernel in exactly the
+            same way as in any other kernel. If you configure a number
+            of block devices and want to boot off something other than
+            ubd0, you would use something like "root=/dev/ubd5".
+          </para>
+
+          <para>
+            To use hostfs for the root filesystem, use the syntax
+            "root=/dev/root rootflags=/ rootfstype=hostfs"
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>umid=<replaceable>name</replaceable></term>
+        <listitem>
+          <para>
+            This is used to assign a unique identity to this UML
+            machine This is used for naming the pid file and
+            management console socket.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>uml_dir=<replaceable>directory</replaceable></term>
+        <listitem>
+          <para>
+            The location to place the pid and umid files.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>initrd=<replaceable>file</replaceable></term>
+        <listitem>
+          <para>
+            This is used to boot UML from an initrd image.  The
+            argument is the name of the file containing the image.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jail</term>
+        <listitem>
+          <para>
+            Enables the protection of kernel memory from processes
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>con[0-9]*=<replaceable>description</replaceable></term>
+        <listitem>
+          <para>
+            Attach a console to a host channel.  Examples of channels
+            include ttys, ptys, pts terminals, xterms, and file
+            descriptors.
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>tty</term>
+              <listitem>
+                <para>
+                  This will make UML attach the device to the
+                  specified tty.  If the tty that you specify is the
+                  slave end of a tty/pty pair, something else must
+                  have already opened the corresponding pty in order
+                  for this to work.
+                  <userinput>con1=tty:/dev/tty3</userinput>
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>pty</term>
+              <listitem>
+                <para>
+                  This will cause UML to allocate a free host pty for
+                  the device. The pty will be announced in the boot
+                  log. You would attach to it via the corresponding
+                  tty.
+                  <userinput>con1=pty</userinput>
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>pts terminal</term>
+              <listitem>
+                <para>
+                  This is similar to pty above, but the specified UML
+                  device will be attached to a free pts device on the
+                  host. Look at the boot log to see which one.
+                  <userinput>con1=pts</userinput>
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>xterm</term>
+              <listitem>
+                <para>
+                  UML will run an xterm and the device will be
+                  attached to it.
+                  <userinput>con1=xterm</userinput>
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>file descriptors</term>
+              <listitem>
+                <para>
+                  If you set up a file descriptor on the UML command
+                  line, you can attach a UML device to it. This is
+                  most commonly used to put the main console back on
+                  stdin and stdout after assigning all the other
+                  consoles to something else.
+                  <userinput>con0=fd:0,fd:1 con=xterm</userinput>
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>You can also specify different input and output
+            channels for a device by putting a comma between them:
+            <userinput>ssl3=tty:/dev/tty2,xterm</userinput>.  See
+            <ulink
+            url="file:///usr/share/doc/user-mode-linux-doc/html/input.html">Setting
+            up Serial Lines and Consoles</ulink> for a more information.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ssl[0-9]*=<replaceable>description</replaceable></term>
+        <listitem>
+          <para>
+            Attach a serial line to a host channel.  The same options
+            are supported as for consoles, described above.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fake_ide</term>
+        <listitem>
+          <para>
+            Create ide0 entries that map onto ubd devices.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ubd[0-7][r][s]=file</term>
+        <listitem>
+          <para>
+
+            <simplelist>
+              <member>
+                <userinput>ubd0r=/tmp/debian-woody.ext2</userinput>
+              </member>
+
+              <member>
+                <userinput>ubd0rs=/tmp/debian-woody.ext2</userinput>
+              </member>
+
+              <member>
+                <userinput>ubd0=/tmp/chroot</userinput>
+              </member>
+
+            </simplelist>
+            </para>
+
+          <para>
+
+            This is used to associate a device with a file or in the
+            underlying filesystem. Usually, there is a filesystem in
+            the file, but that's not required.  Swap devices
+            containing swap files can be specified like this. Also, a
+            file which doesn't contain a filesystem can have its
+            contents read in the virtual machine by running dd on the
+            device. Appending an 'r' will cause that device to be
+            mounted read-only. Appending an 's' tells UML to open the
+            file using O_SYNC (synchronous I/O).
+
+          </para>
+
+          <para>
+            The ubd option can no longer be used to specify a hostfs
+            root filesystem.  See the "root" option for a more correct
+            method.
+          </para>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fakehd</term>
+        <listitem>
+          <para>
+            Change the ubd device name to "hd", allowing programs
+            within UML to access UBD devices as if they were normal
+            IDE disks.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>eth[0-9]+=<replaceable>transport</replaceable>,<replaceable>options</replaceable></term>
+        <listitem>
+          <para>
+            Configure a network device.  Formats and examples follow (one 
+            for each configured transport).
+          </para>
+
+          <para>
+            eth[0-9]+=ethertap,<replaceable>device</replaceable>,<replaceable>ethernet_address</replaceable>,<replaceable>tap_ip_address</replaceable>
+            <userinput>
+              eth0=ethertap,tap0,,192.168.0.1
+            </userinput>
+          </para>
+
+          <para>
+            eth[0-9]+=tuntap,,<replaceable>ethernet_address</replaceable>,<replaceable>ip_address</replaceable>
+            <userinput>
+              eth0=tuntap,,fe:fd:0:0:0:1,192.168.0.1
+            </userinput>
+          </para>
+
+          <para>
+            eth[0-9]+=daemon,<replaceable>ethernet_address</replaceable>,<replaceable>type</replaceable>,<replaceable>control_socket</replaceable>,<replaceable>data_socket</replaceable>
+            <userinput>
+              eth0=daemon,,unix,/var/run/uml-utilities/uml_switch.ctl
+            </userinput>
+          </para>
+
+          <para>
+            eth[0-9]+=slip,<replaceable>slip_ip</replaceable>
+            <userinput>
+              eth0=slip,192.168.0.1
+            </userinput>
+          </para>
+          
+
+          <para>
+            eth[0-9]+=mcast,<replaceable>ethernet_address</replaceable>,<replaceable>address</replaceable>,<replaceable>port</replaceable>,<replaceable>ttl</replaceable>
+            <userinput>
+              eth0=mcast,,224.2.3.4:5555,3
+            </userinput>
+          </para>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mode=tt</term>
+        <listitem>
+          <para>
+            When both CONFIG_MODE_TT and CONFIG_MODE_SKAS are enabled,
+            this option forces UML to run in tt (tracing thread) mode.
+            It is not the default because it's slower and less secure
+            than skas mode.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>--help</term>
+        <listitem>
+          <para>
+            Prints syntax information.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>--version</term>
+        <listitem>
+          <para>
+            Prints the version number of the kernel
+          </para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsect1>
+  <refsect1>
+    <title>SEE ALSO</title>
+
+    <para>The <ulink
+    url="file:///usr/share/doc/user-mode-linux-doc/html/UserModeLinux-HOWTO.html">UserModeLinux-HOWTO</ulink></para>
+
+  </refsect1>
+  <refsect1>
+    <title>AUTHOR</title>
+
+    <para>User-mode Linux was written by Jeff Dike and others.</para>
+
+    <para>This manual page was written by &dhusername; &dhemail; for
+      the &debian; system, based on <command>linux --help</command>
+      and the user-mode-linux website.
+    </para>
+
+  </refsect1>
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:2
+sgml-indent-data:t
+sgml-parent-document:nil
+sgml-default-dtd-file:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

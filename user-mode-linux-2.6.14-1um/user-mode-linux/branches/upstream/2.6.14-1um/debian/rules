@@ -1,0 +1,121 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This is the debhelper compatability version to use.
+export DH_COMPAT=3
+
+config_target:=oldconfig
+kernel_version:=2.6.14
+kernel_dir:=linux-source-$(kernel_version)
+debian:=$(CURDIR)/debian
+tmp:=$(debian)/user-mode-linux
+tmpmodules:=$(debian)/uml-modules
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+KBUILDVARS := CFLAGS_KERNEL=-O1
+endif
+
+unpack: unpack-stamp
+unpack-stamp:
+	tar -x --bzip2 -f /usr/src/linux-source-$(kernel_version).tar.bz2
+	touch $@
+
+patch: patch-stamp
+patch-stamp: unpack-stamp
+	touch $@
+
+$(kernel_dir)/.config: config
+	cp $^ $@
+
+configure: configure-stamp
+configure-stamp: patch-stamp $(kernel_dir)/.config
+	dh_testdir
+
+	$(MAKE) -C $(kernel_dir) $(config_target) ARCH=um
+
+	touch $@
+
+build: build-stamp
+build-stamp: configure-stamp
+	dh_testdir
+
+	$(MAKE) -C $(kernel_dir) $(KBUILDVARS) linux modules ARCH=um
+	docbook-to-man linux.sgml > linux.1
+
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f unpack-stamp patch-stamp build-stamp configure-stamp
+
+	rm -rf $(kernel_dir) linux.1 $(tmpmodules) changelog
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs usr/bin usr/lib/uml \
+		usr/share/doc/user-mode-linux usr/share/lintian/overrides
+
+	install $(kernel_dir)/linux $(tmp)/usr/bin
+	$(MAKE) -C $(kernel_dir) modules_install ARCH=um \
+		INSTALL_MOD_PATH=$(tmpmodules)
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	find $(tmpmodules) -name '*.o' \
+		| xargs --no-run-if-empty strip --strip-debug
+endif
+	-rm $(tmpmodules)/lib/modules/*/build
+	mv $(tmpmodules)/lib/modules \
+		$(tmp)/usr/lib/uml/modules
+	rm -rf $(tmpmodules)
+
+	install -m 644 $(kernel_dir)/.config \
+		$(tmp)/usr/share/doc/user-mode-linux/config
+
+	install -m 644 debian/lintian.overrides \
+		$(tmp)/usr/share/lintian/overrides/user-mode-linux
+
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+#	dh_installdebconf	
+	dh_installdocs
+	dh_installexamples
+	dh_installmenu
+#	dh_installlogrotate
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_installinit
+	dh_installcron
+	dh_installman linux.1
+	dh_installinfo
+#	dh_undocumented
+	dh_installchangelogs $(CURDIR)/debian/changelog
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+#	dh_makeshlibs
+	dh_installdeb
+#	dh_perl
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
