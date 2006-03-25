@@ -1,1 +1,0 @@
-user-mode-linux: statically-linked-binary ./usr/bin/linux
