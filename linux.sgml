@@ -148,7 +148,9 @@ manpage.1: manpage.sgml
             This is actually used by the generic kernel in exactly the
             same way as in any other kernel. If you configure a number
             of block devices and want to boot off something other than
-            ubd0, you would use something like "root=/dev/ubd5".
+            ubd0, you would use something like "root=/dev/ubd5". Another
+			notation is the use of the major and the minor number of the
+			device, i.e. root=98:0, for ubd0.
           </para>
 
           <para>
@@ -164,7 +166,9 @@ manpage.1: manpage.sgml
           <para>
             This is used to assign a unique identity to this UML
             machine This is used for naming the pid file and
-            management console socket.
+            management console socket. I.e. to access to the management
+			console for an already running image (i.e. umid=test), just
+			launch uml_mconsole test from the host command line.
           </para>
         </listitem>
       </varlistentry>
@@ -363,41 +367,38 @@ manpage.1: manpage.sgml
             for each configured transport).
           </para>
 
-          <para>
+          <simplelist>
+          <member>
             eth[0-9]+=ethertap,<replaceable>device</replaceable>,<replaceable>ethernet_address</replaceable>,<replaceable>tap_ip_address</replaceable>
             <userinput>
               eth0=ethertap,tap0,,192.168.0.1
             </userinput>
-          </para>
-
-          <para>
+		  </member>
+		  <member>
             eth[0-9]+=tuntap,,<replaceable>ethernet_address</replaceable>,<replaceable>ip_address</replaceable>
             <userinput>
               eth0=tuntap,,fe:fd:0:0:0:1,192.168.0.1
             </userinput>
-          </para>
-
-          <para>
+		  </member>
+		  <member>
             eth[0-9]+=daemon,<replaceable>ethernet_address</replaceable>,<replaceable>type</replaceable>,<replaceable>control_socket</replaceable>,<replaceable>data_socket</replaceable>
             <userinput>
               eth0=daemon,,unix,/var/run/uml-utilities/uml_switch.ctl
             </userinput>
-          </para>
-
-          <para>
+		  </member>
+		  <member>
             eth[0-9]+=slip,<replaceable>slip_ip</replaceable>
             <userinput>
               eth0=slip,192.168.0.1
             </userinput>
-          </para>
-          
-
-          <para>
+		  </member>
+		  <member>
             eth[0-9]+=mcast,<replaceable>ethernet_address</replaceable>,<replaceable>address</replaceable>,<replaceable>port</replaceable>,<replaceable>ttl</replaceable>
             <userinput>
               eth0=mcast,,224.2.3.4:5555,3
             </userinput>
-          </para>
+		  </member>
+		  </simplelist>
 
         </listitem>
       </varlistentry>
@@ -432,8 +433,20 @@ manpage.1: manpage.sgml
         </listitem>
       </varlistentry>
 
+      <varlistentry>
+        <term>--showconfig</term>
+        <listitem>
+          <para>
+            Prints the configuration used to build the kernel:
+				<userinput>linux --showconfig > config_file</userinput>
+			prints in "config_file" file the configiguration file with
+			all the option used to build the "linux" uml kernel.
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
-  </refsect1>
+
+</refsect1>
   <refsect1>
     <title>SEE ALSO</title>
 
