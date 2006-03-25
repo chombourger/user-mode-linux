@@ -9,7 +9,7 @@
 export DH_COMPAT=3
 
 config_target:=oldconfig
-kernel_version:=2.6.12
+kernel_version:=2.6.14
 kernel_dir:=linux-source-$(kernel_version)
 debian:=$(CURDIR)/debian
 tmp:=$(debian)/user-mode-linux

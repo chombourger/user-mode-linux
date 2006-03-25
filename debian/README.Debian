@@ -46,7 +46,7 @@ to do this the easy way.  See sources.list(5).
 
 5. $ cd kernel-source-KVERSION
 
-6. $ make config ARCH=um # etc.
+6. $ make defconf ARCH=um && make config ARCH=um # etc.
 
    All makefile commands must include ARCH=um
 

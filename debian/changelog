@@ -1,6 +1,12 @@
+user-mode-linux (2.6.14-1um-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Stefano Melchior <stefano.melchior@openlabs.it>  Sat, 14 Jan 2006 20:30:41 +0100
+
 user-mode-linux (2.6.12-1um-1) unstable; urgency=low
 
-  * New upstream release (Closes: #271246, Closes: #276993, Closes: #170878).
+  * New upstream release (Closes: #271246, Closes: #271246, Closes: #276993, Closes: #170878).
   * 2.4 and 2.6 support available (Closes: #264722).
   * uml_net support fixed bug (Closes: #140790).
 
