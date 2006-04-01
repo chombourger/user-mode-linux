@@ -2,8 +2,8 @@ Source: user-mode-linux
 Section: misc
 Priority: extra
 Maintainer: Stefano Melchior <stefano.melchior@openlabs.it>
-Build-Depends: debhelper (>> 4.0.0), linux-source-2.6.15, docbook-to-man, bzip2, m4, modutils
-Uploaders: Andreas Schuldei <andreas@schuldei.org>
+Build-Depends: debhelper (>> 4.0.0), dpatch, linux-source-2.6.16, docbook-to-man, bzip2, m4, module-init-tools
+Uploaders: Andreas Schuldei <andreas@schuldei.org>, Mattia Dongili <malattia@debian.org>
 Standards-Version: 3.6.2
 
 Package: user-mode-linux

@@ -1,3 +1,21 @@
+user-mode-linux (2.6.16-1um-1) unstable; urgency=low
+
+  * New upstream release (definitely Closes: #264772).
+  [Mattia Dongili]:
+    * added myself to the uploaders
+    * fixed dependency on module-init-tools for kernel 2.6
+    * added some small acks to avoid removing and unpacking kernel sources
+      again and again when testing builds, use with:
+      UML_MAINT_MODE=1 dpkg-buildpackage -uc -us -Ilinux-source-2.6.16
+      UML_MAINT_MODE=1 ./debian/rules clean
+    * using dpatch to apply patches, currently only a patch to fix uml_net
+      path usage as we install to /usr/lib/uml/
+    * updated config for 2.6.16
+    * installing uml defconfig as a reference
+    * converted lots of stuff to modular build
+
+ -- Mattia Dongili <malattia@debian.org>  Sat, 01 Apr 2006 15:58:36 +0200
+
 user-mode-linux (2.6.15-1um-1) unstable; urgency=low
 
   * New upstream release
