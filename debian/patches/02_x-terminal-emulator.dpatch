@@ -9,9 +9,9 @@
 # Author: malattia
 # Status: none
 
---- arch/um/drivers/xterm.c.orig        2002-10-04 23:51:39.000000000 -0400
-+++ arch/um/drivers/xterm.c     2002-10-04 23:55:14.000000000 -0400
-@@ -45,7 +45,7 @@
+--- arch/um/drivers/xterm.c~clean	2006-04-02 16:43:32.797702685 +0200
++++ arch/um/drivers/xterm.c	2006-04-02 16:43:41.034217435 +0200
+@@ -48,7 +48,7 @@ void *xterm_init(char *str, int device, 
  }
  
  /* Only changed by xterm_setup, which is a setup */
@@ -20,7 +20,7 @@
  static char *title_switch = "-T";
  static char *exec_switch = "-e";
  
-@@ -76,7 +76,7 @@
+@@ -79,7 +79,7 @@ __uml_setup("xterm=", xterm_setup,
  "    respectively.  The title switch must have the form '<switch> title',\n"
  "    not '<switch>=title'.  Similarly, the exec switch must have the form\n"
  "    '<switch> command arg1 arg2 ...'.\n"
