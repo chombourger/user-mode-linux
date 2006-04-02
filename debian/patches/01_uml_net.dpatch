@@ -9,59 +9,23 @@
 # Author: malattia
 # Status: none
 
---- ./arch/um/drivers/net_user.c	2006-03-20 06:53:29.000000000 +0100
-+++ ./arch/um/drivers/net_user.c~dirty	2006-04-01 21:43:35.572951912 +0200
-@@ -197,7 +197,7 @@ static void change(char *dev, char *what
- 	char addr_buf[sizeof("255.255.255.255\0")];
- 	char netmask_buf[sizeof("255.255.255.255\0")];
- 	char version[sizeof("nnnnn\0")];
--	char *argv[] = { "uml_net", version, what, dev, addr_buf, 
-+	char *argv[] = { "/usr/lib/uml/uml_net", version, what, dev, addr_buf, 
- 			 netmask_buf, NULL };
- 	char *output;
- 	int output_len, pid;
---- ./arch/um/drivers/slip_user.c	2006-03-20 06:53:29.000000000 +0100
-+++ ./arch/um/drivers/slip_user.c~dirty	2006-04-01 21:44:14.639393412 +0200
-@@ -128,7 +128,7 @@ static int slip_open(void *data)
- 	struct slip_data *pri = data;
- 	char version_buf[sizeof("nnnnn\0")];
- 	char gate_buf[sizeof("nnn.nnn.nnn.nnn\0")];
--	char *argv[] = { "uml_net", version_buf, "slip", "up", gate_buf, 
-+	char *argv[] = { "/usr/lib/uml/uml_net", version_buf, "slip", "up", gate_buf, 
- 			 NULL };
- 	int sfd, mfd, err;
+--- arch/um/os-Linux/helper.c~clean	2006-04-02 16:32:38.340801686 +0200
++++ arch/um/os-Linux/helper.c	2006-04-02 16:34:13.454745936 +0200
+@@ -22,6 +22,9 @@ struct helper_data {
+ 	int fd;
+ };
  
-@@ -190,7 +190,7 @@ static void slip_close(int fd, void *dat
- {
- 	struct slip_data *pri = data;
- 	char version_buf[sizeof("nnnnn\0")];
--	char *argv[] = { "uml_net", version_buf, "slip", "down", pri->name, 
-+	char *argv[] = { "/usr/lib/uml/uml_net", version_buf, "slip", "down", pri->name, 
- 			 NULL };
- 	int err;
++/* PATH variable to find uml helpers  installed in FHS compliant locations */
++static char *alt_path = "PATH=:/bin:/usr/bin:/usr/lib/uml"; 
++
+ /* Debugging aid, changed only from gdb */
+ int helper_pause = 0;
  
---- ./arch/um/os-Linux/drivers/ethertap_user.c	2006-03-20 06:53:29.000000000 +0100
-+++ ./arch/um/os-Linux/drivers/ethertap_user.c~dirty	2006-04-01 21:44:55.405941162 +0200
-@@ -94,9 +94,9 @@ static int etap_tramp(char *dev, char *g
- 	char version_buf[sizeof("nnnnn\0")];
- 	char data_fd_buf[sizeof("nnnnnn\0")];
- 	char gate_buf[sizeof("nnn.nnn.nnn.nnn\0")];
--	char *setup_args[] = { "uml_net", version_buf, "ethertap", dev,
-+	char *setup_args[] = { "/usr/lib/uml/uml_net", version_buf, "ethertap", dev,
- 			       data_fd_buf, gate_buf, NULL };
--	char *nosetup_args[] = { "uml_net", version_buf, "ethertap", 
-+	char *nosetup_args[] = { "/usr/lib/uml/uml_net", version_buf, "ethertap", 
- 				 dev, data_fd_buf, NULL };
- 	char **args, c;
- 
---- ./arch/um/os-Linux/drivers/tuntap_user.c	2006-03-20 06:53:29.000000000 +0100
-+++ ./arch/um/os-Linux/drivers/tuntap_user.c~dirty	2006-04-01 21:45:34.532386412 +0200
-@@ -68,7 +68,7 @@ static int tuntap_open_tramp(char *gate,
- {
- 	struct tuntap_pre_exec_data data;
- 	char version_buf[sizeof("nnnnn\0")];
--	char *argv[] = { "uml_net", version_buf, "tuntap", "up", gate,
-+	char *argv[] = { "/usr/lib/uml/uml_net", version_buf, "tuntap", "up", gate,
- 			 NULL };
- 	char buf[CMSG_SPACE(sizeof(*fd_out))];
- 	struct msghdr msg;
+@@ -41,6 +44,7 @@ static int helper_child(void *arg)
+ 	}
+ 	if(data->pre_exec != NULL)
+ 		(*data->pre_exec)(data->pre_data);
++	putenv(alt_path);
+ 	execvp(argv[0], argv);
+ 	errval = errno;
+ 	printk("execvp of '%s' failed - errno = %d\n", argv[0], errno);
