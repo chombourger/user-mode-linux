@@ -9,23 +9,46 @@
 # Author: malattia
 # Status: none
 
---- ./arch/um/os-Linux/helper.c~clean	2006-04-02 16:32:38.340801686 +0200
-+++ ./arch/um/os-Linux/helper.c	2006-04-02 16:34:13.454745936 +0200
-@@ -22,6 +22,9 @@ struct helper_data {
- 	int fd;
- };
+--- ./arch/um/os-Linux/main.c~clean	2006-04-02 21:08:26.782461831 +0200
++++ ./arch/um/os-Linux/main.c	2006-04-02 21:37:45.548377831 +0200
+@@ -74,6 +74,31 @@ static void last_ditch_exit(int sig)
+ 	exit(1);
+ }
  
-+/* PATH variable to find uml helpers  installed in FHS compliant locations */
-+static char *alt_path = "PATH=:/bin:/usr/bin:/usr/lib/uml"; 
++static void setup_env_path(void) {
++	char *new_path = NULL;
++	char *old_path = NULL;
++	int path_len = 0;
 +
- /* Debugging aid, changed only from gdb */
- int helper_pause = 0;
++	old_path = getenv("PATH");
++	if (!old_path) {
++		/* if no PATH variable is set, just use 
++		 * the default + /usr/lib/uml
++		 */
++		putenv("PATH=:/bin:/usr/bin/:/usr/lib/uml");
++		return;
++	}
++
++	/* append /usr/lib/uml to the existing path */
++	path_len = strlen(old_path) + 19; 
++	new_path = malloc(path_len * sizeof(char));
++	if (!new_path) {
++		perror("coudn't malloc to set a new PATH");
++		return;
++	}
++	snprintf(new_path, path_len, "PATH=%s:/usr/lib/uml", old_path);
++	putenv(new_path);
++}
++
+ extern int uml_exitcode;
  
-@@ -41,6 +44,7 @@ static int helper_child(void *arg)
- 	}
- 	if(data->pre_exec != NULL)
- 		(*data->pre_exec)(data->pre_data);
-+	putenv(alt_path);
- 	execvp(argv[0], argv);
- 	errval = errno;
- 	printk("execvp of '%s' failed - errno = %d\n", argv[0], errno);
+ extern void scan_elf_aux( char **envp);
+@@ -114,6 +139,8 @@ int main(int argc, char **argv, char **e
+ 
+ 	set_stklim();
+ 
++	setup_env_path();
++
+ 	new_argv = malloc((argc + 1) * sizeof(char *));
+ 	if(new_argv == NULL){
+ 		perror("Mallocing argv");
