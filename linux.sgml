@@ -72,6 +72,7 @@ manpage.1: manpage.sgml
     <title>OPTIONS</title>
 
     <variablelist>
+    
       <varlistentry>
         <term>mem=<replaceable>memory</replaceable>
         </term>
@@ -108,6 +109,7 @@ manpage.1: manpage.sgml
           </para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>debugtrace</term>
         <listitem>
@@ -119,6 +121,7 @@ manpage.1: manpage.sgml
           </para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>honeypot</term>
         <listitem>
@@ -349,6 +352,18 @@ manpage.1: manpage.sgml
       </varlistentry>
 
       <varlistentry>
+        <term>udb</term>
+        <listitem>
+          <para>
+	    This option is here solely to catch ubd -&gt; udb typos, which can be
+	    to impossible to catch visually unless you specifically look for
+	    them. The only result of any option starting with 'udb' is an error
+	    in the boot output.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>fakehd</term>
         <listitem>
           <para>
@@ -370,35 +385,45 @@ manpage.1: manpage.sgml
           <simplelist>
           <member>
             eth[0-9]+=ethertap,<replaceable>device</replaceable>,<replaceable>ethernet_address</replaceable>,<replaceable>tap_ip_address</replaceable>
+	  </member>
+          <member>
             <userinput>
               eth0=ethertap,tap0,,192.168.0.1
             </userinput>
-		  </member>
-		  <member>
+	  </member>
+	  <member>
             eth[0-9]+=tuntap,,<replaceable>ethernet_address</replaceable>,<replaceable>ip_address</replaceable>
+	  </member>
+          <member>
             <userinput>
               eth0=tuntap,,fe:fd:0:0:0:1,192.168.0.1
             </userinput>
-		  </member>
-		  <member>
+	  </member>
+	  <member>
             eth[0-9]+=daemon,<replaceable>ethernet_address</replaceable>,<replaceable>type</replaceable>,<replaceable>control_socket</replaceable>,<replaceable>data_socket</replaceable>
+	  </member>
+	  <member>
             <userinput>
               eth0=daemon,,unix,/var/run/uml-utilities/uml_switch.ctl
             </userinput>
-		  </member>
-		  <member>
+	  </member>
+	  <member>
             eth[0-9]+=slip,<replaceable>slip_ip</replaceable>
+	  </member>
+	  <member>
             <userinput>
               eth0=slip,192.168.0.1
             </userinput>
-		  </member>
-		  <member>
+	  </member>
+	  <member>
             eth[0-9]+=mcast,<replaceable>ethernet_address</replaceable>,<replaceable>address</replaceable>,<replaceable>port</replaceable>,<replaceable>ttl</replaceable>
+	  </member>
+	  <member>
             <userinput>
               eth0=mcast,,224.2.3.4:5555,3
             </userinput>
-		  </member>
-		  </simplelist>
+	  </member>
+	  </simplelist>
 
         </listitem>
       </varlistentry>
@@ -411,6 +436,137 @@ manpage.1: manpage.sgml
             this option forces UML to run in tt (tracing thread) mode.
             It is not the default because it's slower and less secure
             than skas mode.
+          </para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>mode=skas0</term>
+        <listitem>
+          <para>
+	    Disables SKAS3 usage, so that SKAS0 is used, unless you
+	    specify mode=tt. Note that this was recently added - on
+	    older kernels you must use simply "skas0".
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>skas0</term>
+        <listitem>
+          <para>
+	    Disables SKAS3 usage, so that SKAS0 is used, unless
+	    you specify mode=tt.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mconsole=notify:<replaceable>socket</replaceable></term>
+        <listitem>
+          <para>
+	    Requests that the mconsole driver send a message to the named Unix
+	    socket containing the name of the mconsole socket. This also
+	    serves to notify outside processes when UML has booted far enough
+	    to respond to mconsole requests.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>aio=2.4</term>
+        <listitem>
+          <para>
+	    This is used to force UML to use 2.4-style AIO even when 2.6 AIO is
+	    available.  2.4 AIO is a single thread that handles one request at
+	    a time, synchronously.  2.6 AIO is a thread which uses the 2.6 AIO
+	    interface to handle an arbitrary number of pending requests.  2.6
+	    AIO is not available in tt mode, on 2.4 hosts, or when UML is built
+	    with /usr/include/linux/aio_abi.h not available. Many distributions
+	    don't include aio_abi.h, so you will need to copy it from a kernel
+	    tree to your /usr/include/linux in order to build an AIO-capable
+	    UML.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hostfs=<replaceable>rootdir</replaceable>,<replaceable>flags</replaceable></term>
+        <listitem>
+          <para>
+	    This is used to set hostfs parameters.  The root directory argument
+	    is used to confine all hostfs mounts to within the specified
+	    directory tree on the host.  If this isn't specified, then a user
+	    inside UML can mount anything on the host that's accessible to the
+	    user that's running it.
+	    The only flag currently supported is 'append', which specifies that
+	    all files opened by hostfs will be opened in append mode.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xterm=<replaceable>terminal emulator</replaceable>,<replaceable>title switch</replaceable>,<replaceable>exec switch</replaceable></term>
+        <listitem>
+          <para>
+	    Specifies an alternate terminal emulator to use for the debugger,
+	    consoles, and serial lines when they are attached to the xterm
+	    channel.  The values are the terminal emulator binary, the switch
+	    it uses to set its title, and the switch it uses to execute a
+	    subprocess, respectively.  The title switch must have the form
+	    '&lt;switch&gt; title', not '&lt;switch&gt;=title'.  Similarly, the
+	    exec switch must have the form '&lt;switch&gt; command arg1 arg2
+	    ...'.
+	    The default values are 'xterm=xterm,-T,-e'.  Values for
+	    gnome-terminal are 'xterm=gnome-terminal,-t,-x'.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>noptraceldt</term>
+        <listitem>
+          <para>
+	    Turns off usage of PTRACE_LDT, even if host supports it.
+	    To support PTRACE_LDT, the host needs to be patched using the
+	    current skas3 patch.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>noptracefaultinfo</term>
+        <listitem>
+          <para>
+	    Turns off usage of PTRACE_FAULTINFO, even if host supports it. To
+	    support PTRACE_FAULTINFO, the host needs to be patched using the
+	    current skas3 patch.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>noprocmm</term>
+        <listitem>
+          <para>
+	    Turns off usage of /proc/mm, even if host supports it.
+	    To support /proc/mm, the host needs to be patched using the current
+	    skas3 patch.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nosysemu</term>
+        <listitem>
+          <para>
+	    Turns off syscall emulation patch for ptrace (SYSEMU) on.
+	    SYSEMU is a performance-patch introduced by Laurent Vivier. It
+	    changes behaviour of ptrace() and helps reducing host context
+	    switch rate.  To make it working, you need a kernel patch for your
+	    host, too.
+	    See http://perso.wanadoo.fr/laurent.vivier/UML/ for further
+	    information.
           </para>
         </listitem>
       </varlistentry>
@@ -428,7 +584,7 @@ manpage.1: manpage.sgml
         <term>--version</term>
         <listitem>
           <para>
-            Prints the version number of the kernel
+            Prints the version number of the kernel.
           </para>
         </listitem>
       </varlistentry>
@@ -438,9 +594,9 @@ manpage.1: manpage.sgml
         <listitem>
           <para>
             Prints the configuration used to build the kernel:
-				<userinput>linux --showconfig > config_file</userinput>
-			prints in "config_file" file the configiguration file with
-			all the option used to build the "linux" uml kernel.
+	   <userinput>linux --showconfig > config_file</userinput>
+	   prints in "config_file" file the configiguration file with
+	   all the option used to build the "linux" uml kernel.
           </para>
         </listitem>
       </varlistentry>
