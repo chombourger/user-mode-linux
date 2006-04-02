@@ -13,6 +13,7 @@ user-mode-linux (2.6.16-1um-1) unstable; urgency=low
     * updated config for 2.6.16
     * installing uml defconfig as a reference
     * converted lots of stuff to modular build
+    * updated manpage for the linux executable
 
  -- Mattia Dongili <malattia@debian.org>  Sat, 01 Apr 2006 15:58:36 +0200
 
