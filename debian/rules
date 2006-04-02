@@ -19,15 +19,9 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 KBUILDVARS := CFLAGS_KERNEL=-O1
 endif
 
-unpack_clean_sources:=$(shell if [ -d $(kernel_dir) ] && [ -n "$(UML_MAINT_MODE)" ] ; then echo 1 ; fi)
-
 unpack: unpack-stamp
 unpack-stamp:
-ifeq (,$(unpack_clean_sources))
 	tar -x --bzip2 -f /usr/src/linux-source-$(kernel_version).tar.bz2
-else
-	@echo "UML Maintainer mode and kernel sources already unpacked"
-endif
 	touch $@
 
 patch: patch-stamp
@@ -55,26 +49,19 @@ build-stamp: configure
 
 	touch $@
 
-clean: clean-patched unpatch
-clean-patched:
+clean: clean-unpatched
+clean-unpatched: unpatch
 	dh_testdir
 	dh_testroot
 	rm -f unpack-stamp build-stamp configure-stamp
 
-ifeq (,$(unpack_clean_sources))
-	rm -rf $(kernel_dir)
-else
-	@echo "UML Maintainer mode, not just cleaning kernel directory tree."
-	cd $(kernel_dir) && make clean mrproper && cd ..
-	rm -rf $(kernel_dir)/linux
-endif
-	rm -rf linux.1 $(tmpmodules) changelog
+	rm -rf $(kernel_dir) linux.1 $(tmpmodules) changelog
 
 	dh_clean
 
 unpatch:
 	dpatch --workdir $(kernel_dir) deapply-all
-	rm -rf patch-stamp $(kernel_dir)/debian/patched
+	rm -rf patch-stamp $(kernel_dir)/debian
 
 install: build
 	dh_testdir
