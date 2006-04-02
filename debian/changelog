@@ -4,8 +4,9 @@ user-mode-linux (2.6.16-1um-1) unstable; urgency=low
   [Mattia Dongili]:
     * added myself to the uploaders
     * fixed dependency on module-init-tools for kernel 2.6
-    * using dpatch to apply patches, currently only a patch to fix uml_net
-      path usage as we install to /usr/lib/uml/
+    * using dpatch to apply patches, current patches are:
+      - 01_uml_net
+      - 02_x-terminal-emulator
     * updated config for 2.6.16
     * installing uml defconfig as a reference
     * converted lots of stuff to modular build

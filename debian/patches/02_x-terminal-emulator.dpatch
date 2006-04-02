@@ -9,8 +9,8 @@
 # Author: malattia
 # Status: none
 
---- arch/um/drivers/xterm.c~clean	2006-04-02 16:43:32.797702685 +0200
-+++ arch/um/drivers/xterm.c	2006-04-02 16:43:41.034217435 +0200
+--- ./arch/um/drivers/xterm.c~clean	2006-04-02 16:43:32.797702685 +0200
++++ ./arch/um/drivers/xterm.c	2006-04-02 16:43:41.034217435 +0200
 @@ -48,7 +48,7 @@ void *xterm_init(char *str, int device, 
  }
  

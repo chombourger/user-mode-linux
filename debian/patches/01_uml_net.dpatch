@@ -9,8 +9,8 @@
 # Author: malattia
 # Status: none
 
---- arch/um/os-Linux/helper.c~clean	2006-04-02 16:32:38.340801686 +0200
-+++ arch/um/os-Linux/helper.c	2006-04-02 16:34:13.454745936 +0200
+--- ./arch/um/os-Linux/helper.c~clean	2006-04-02 16:32:38.340801686 +0200
++++ ./arch/um/os-Linux/helper.c	2006-04-02 16:34:13.454745936 +0200
 @@ -22,6 +22,9 @@ struct helper_data {
  	int fd;
  };
