@@ -9,12 +9,14 @@
 # Author: malattia
 # Status: none
 
---- ./arch/um/os-Linux/main.c~clean	2006-04-02 21:08:26.782461831 +0200
-+++ ./arch/um/os-Linux/main.c	2006-04-02 21:37:45.548377831 +0200
-@@ -74,6 +74,31 @@ static void last_ditch_exit(int sig)
+--- ./arch/um/os-Linux/main.c
++++ ./arch/um/os-Linux/main.c
+@@ -74,6 +74,38 @@ static void last_ditch_exit(int sig)
  	exit(1);
  }
  
++#define UML_LIB_PATH	":/usr/lib/uml"
++
 +static void setup_env_path(void) {
 +	char *new_path = NULL;
 +	char *old_path = NULL;
@@ -22,28 +24,33 @@
 +
 +	old_path = getenv("PATH");
 +	if (!old_path) {
-+		/* if no PATH variable is set, just use 
++		/* if no PATH variable is set, just use
 +		 * the default + /usr/lib/uml
 +		 */
-+		putenv("PATH=:/bin:/usr/bin/:/usr/lib/uml");
++		putenv("PATH=:/bin:/usr/bin/" UML_LIB_PATH);
 +		return;
 +	}
 +
++	/* do nothing if the PATH variable exists but is empty */
++	path_len = strlen(old_path);
++	if (!path_len)
++		return;
++
 +	/* append /usr/lib/uml to the existing path */
-+	path_len = strlen(old_path) + 19; 
++	path_len += strlen("PATH=" UML_LIB_PATH) + 1;
 +	new_path = malloc(path_len * sizeof(char));
 +	if (!new_path) {
 +		perror("coudn't malloc to set a new PATH");
 +		return;
 +	}
-+	snprintf(new_path, path_len, "PATH=%s:/usr/lib/uml", old_path);
++	snprintf(new_path, path_len, "PATH=%s" UML_LIB_PATH, old_path);
 +	putenv(new_path);
 +}
 +
  extern int uml_exitcode;
  
  extern void scan_elf_aux( char **envp);
-@@ -114,6 +139,8 @@ int main(int argc, char **argv, char **e
+@@ -114,6 +146,8 @@ int main(int argc, char **argv, char **e
  
  	set_stklim();
  
