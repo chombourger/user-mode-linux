@@ -11,7 +11,7 @@
 
 --- ./arch/um/os-Linux/main.c
 +++ ./arch/um/os-Linux/main.c
-@@ -74,6 +74,38 @@ static void last_ditch_exit(int sig)
+@@ -74,6 +74,33 @@ static void last_ditch_exit(int sig)
  	exit(1);
  }
  
@@ -23,22 +23,17 @@
 +	int path_len = 0;
 +
 +	old_path = getenv("PATH");
-+	if (!old_path) {
-+		/* if no PATH variable is set, just use
-+		 * the default + /usr/lib/uml
-+		 */
++	/* if no PATH variable is set or it has an empty value
++	 * just use the default + /usr/lib/uml
++	 */
++	if (!old_path || (path_len = strlen(old_path)) == 0) {
 +		putenv("PATH=:/bin:/usr/bin/" UML_LIB_PATH);
 +		return;
 +	}
 +
-+	/* do nothing if the PATH variable exists but is empty */
-+	path_len = strlen(old_path);
-+	if (!path_len)
-+		return;
-+
 +	/* append /usr/lib/uml to the existing path */
 +	path_len += strlen("PATH=" UML_LIB_PATH) + 1;
-+	new_path = malloc(path_len * sizeof(char));
++	new_path = malloc(path_len);
 +	if (!new_path) {
 +		perror("coudn't malloc to set a new PATH");
 +		return;
@@ -50,7 +45,7 @@
  extern int uml_exitcode;
  
  extern void scan_elf_aux( char **envp);
-@@ -114,6 +146,8 @@ int main(int argc, char **argv, char **e
+@@ -114,6 +141,8 @@ int main(int argc, char **argv, char **e
  
  	set_stklim();
  
