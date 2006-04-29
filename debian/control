@@ -1,9 +1,9 @@
 Source: user-mode-linux
 Section: misc
 Priority: extra
-Maintainer: Stefano Melchior <stefano.melchior@openlabs.it>
+Maintainer: User Mode Linux Maintainers <pkg-uml-pkgs@lists.alioth.debian.org>
 Build-Depends: debhelper (>> 4.0.0), dpatch, linux-source-2.6.16, docbook-to-man, bzip2, m4, module-init-tools
-Uploaders: Andreas Schuldei <andreas@schuldei.org>, Mattia Dongili <malattia@debian.org>
+Uploaders: Andreas Schuldei <andreas@schuldei.org>, Mattia Dongili <malattia@debian.org>, Stefano Melchior <stefano.melchior@openlabs.it>
 Standards-Version: 3.6.2
 
 Package: user-mode-linux
