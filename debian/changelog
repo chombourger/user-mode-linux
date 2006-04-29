@@ -5,6 +5,7 @@ user-mode-linux (2.6.16-1um-2) unstable; urgency=low
   * add CONFIG_INITRD=y to allow bootstrapping install media.
   * set CONFIG_ISO9660_FS=y to allow mounting iso images when bootstrapping
     from install media.
+  * remove useless lintian.overrides file.
 
  -- Mattia Dongili <malattia@debian.org>  Sat, 29 Apr 2006 21:23:58 +0200
   
