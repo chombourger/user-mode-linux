@@ -67,8 +67,7 @@ install: build
 	dh_testdir
 	dh_testroot
 	dh_clean -k
-	dh_installdirs usr/bin usr/lib/uml \
-		usr/share/doc/user-mode-linux usr/share/lintian/overrides
+	dh_installdirs usr/bin usr/lib/uml usr/share/doc/user-mode-linux
 
 	install $(kernel_dir)/linux $(tmp)/usr/bin
 	$(MAKE) -C $(kernel_dir) modules_install ARCH=um \
@@ -87,10 +86,6 @@ endif
 
 	install -m 644 umldefconfig \
 		$(tmp)/usr/share/doc/user-mode-linux/defconfig
-
-	install -m 644 debian/lintian.overrides \
-		$(tmp)/usr/share/lintian/overrides/user-mode-linux
-
 
 # Build architecture-independent files here.
 binary-indep: build install
