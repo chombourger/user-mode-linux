@@ -1,0 +1,23 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 03_uml_switch - Mattia Dongili <malattia@debian.org>
+## rediffed from previous mdz patch
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Use Debian's standard location for uml_net helper
+
+@DPATCH@
+
+# Author: malattia
+# Status: none
+
+--- linux-source-2.6.16/arch/um/drivers/daemon_kern.c~clean	2006-05-21 19:26:36.647788742 +0200
++++ linux-source-2.6.16/arch/um/drivers/daemon_kern.c	2006-05-21 19:26:43.208198742 +0200
+@@ -71,7 +71,7 @@
+ 
+ 	*init = ((struct daemon_init)
+ 		{ .sock_type 		= "unix",
+-		  .ctl_sock 		= "/tmp/uml.ctl" });
++		  .ctl_sock 		= "/var/run/uml-utilities/uml_switch.ctl" });
+ 	
+ 	remain = split_if_spec(str, mac_out, &init->sock_type, &init->ctl_sock,
+ 			       NULL);
