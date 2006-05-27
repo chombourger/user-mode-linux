@@ -1,9 +1,10 @@
-user-mode-linux (2.6.16-1um-3) unstable; urgency=low
+user-mode-linux (2.6.16-2um-1) unstable; urgency=low
 
   [Mattia Dongili]:
   * add 03_uml_switch patch (Closes: #367132)
   * use the alternatives system to avoid conflicting with kernel-package
     self-build UML kernels.
+  * don't include the debian directory in orig.tar.gz
 
  -- Mattia Dongili <malattia@debian.org>  Sat, 27 May 2006 19:32:08 +0200
 
