@@ -6,8 +6,9 @@ user-mode-linux (2.6.16-2um-1) unstable; urgency=low
     self-build UML kernels.
   * don't include the debian directory in orig.tar.gz
   * bump Standards-Version to the latest (3.7.2)
+  * enable dm-* and cyphers modules in config.
 
- -- Mattia Dongili <malattia@debian.org>  Sat, 27 May 2006 19:32:08 +0200
+ -- Mattia Dongili <malattia@debian.org>  Wed, 31 May 2006 18:06:30 +0200
 
 user-mode-linux (2.6.16-1um-2) unstable; urgency=low
 
