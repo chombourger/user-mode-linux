@@ -11,15 +11,21 @@ echo "hostfs /lib/modules hostfs /usr/lib/uml/modules 0 0" >> /etc/fstab
 
 or copy them into your root filesystem (rootstrap can do this automatically).
 
+NOTE: to be able to load 2.6 kernel modules you'll need to install
+      module-init-tools in the guest root filesystem. You can easly do this
+      inside the running guest by apt-get'ing the package or when building
+      your rootfs with rootstrap by adding the proper option in the 
+      configuration file (include=module-init-tools or 
+      install=module-init-tools).
+
 Kernel configuration notes
 --------------------------
 
 Unlike the UML binaries distributed from the official UML website,
-this kernel is configured not to mount DevFS by default, in order to
-work correctly with a base Debian installation under UML.
-
-If you are using UML rootfs images from the UML website, or need DevFS
-for any other reason, pass "devfs=mount" on the UML command line.
+this kernel does not support DevFS as this feature has been obsoleted in the
+upstream Linux kernel and will be removed very soon.
+Instead of DevFS you can run udev inside the guest or simply have static /dev
+nodes (which I suggest as you'll hardly have many varying devices there).
 
 Compiling a Custom UML package
 ------------------------------
