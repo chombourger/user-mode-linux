@@ -14,6 +14,7 @@ kernel_dir:=linux-source-$(kernel_version)
 debian:=$(CURDIR)/debian
 tmp:=$(debian)/user-mode-linux
 tmpmodules:=$(debian)/uml-modules
+DEB_HOST_ARCH:=$(shell dpkg-architecture -qDEB_HOST_ARCH)
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 KBUILDVARS := CFLAGS_KERNEL=-O1
@@ -29,7 +30,7 @@ patch-stamp: unpack-stamp
 	dpatch --workdir $(kernel_dir) apply-all
 	touch $@
 
-$(kernel_dir)/.config: config
+$(kernel_dir)/.config: config.$(DEB_HOST_ARCH)
 	cp $^ $@
 
 configure: configure-stamp
