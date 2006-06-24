@@ -1,3 +1,13 @@
+user-mode-linux (2.6.17-1um-1) unstable; urgency=low
+
+  * New upstream release:
+    - includes TLS support (Closes: #312562) (Closes: #265486)
+    - merged 01_uml_net patch (hence dropped from the package)
+  * Build with HOST_2G_2G as the kernel team doesn't seem to care about setting
+    a decent PAGE_OFFSET (hopefully closes: #366915).
+
+ -- Mattia Dongili <malattia@debian.org>  Sat, 24 Jun 2006 11:57:45 +0200
+
 user-mode-linux (2.6.16-2um-1) unstable; urgency=low
 
   [Mattia Dongili]:
