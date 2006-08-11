@@ -1,3 +1,10 @@
+user-mode-linux (2.6.17-1um-2) unstable; urgency=low
+
+  * Include IF_VS support. (Closes: #382295)
+  * Update config.i386 against current linux-source package.
+
+ -- Mattia Dongili <malattia@debian.org>  Fri, 11 Aug 2006 13:15:21 +0200
+
 user-mode-linux (2.6.17-1um-1) unstable; urgency=low
 
   * New upstream release:
