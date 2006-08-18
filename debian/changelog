@@ -1,3 +1,10 @@
+user-mode-linux (2.6.17-1um-3) unstable; urgency=low
+
+  * 'mv debian/NEWS debian/NEWS.Debian' so that it will be catched by
+    apt-listchanges.
+
+ -- Mattia Dongili <malattia@debian.org>  Fri, 18 Aug 2006 19:10:49 +0200
+
 user-mode-linux (2.6.17-1um-2) unstable; urgency=low
 
   * Include IP_VS support. (Closes: #382295)
