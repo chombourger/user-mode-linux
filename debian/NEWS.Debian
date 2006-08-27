@@ -1,4 +1,4 @@
-user-mode-linuc (2.6.17-1um-2) unstable; urgency=low
+user-mode-linux (2.6.17-1um-2) unstable; urgency=low
 
   The Linux 2.6 kernel (and therefore the user-mode-linux kernel package) is
   significantly changed since the 2.4 series, some major issues you should be
