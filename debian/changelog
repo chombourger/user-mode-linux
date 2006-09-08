@@ -2,6 +2,7 @@ user-mode-linux (2.6.17-1um-3) unstable; urgency=low
 
   * 'mv debian/NEWS debian/NEWS.Debian' so that it will be catched by
     apt-listchanges.
+  * add amd64 architecture, build and run tested. (Closes: #384881)
 
  -- Mattia Dongili <malattia@debian.org>  Fri, 18 Aug 2006 19:10:49 +0200
 
