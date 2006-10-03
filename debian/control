@@ -9,7 +9,7 @@ Standards-Version: 3.7.2
 Package: user-mode-linux
 Architecture: i386
 Depends: uml-utilities (>= 20040406-1)
-Suggests: x-terminal-emulator, rootstrap, user-mode-linux-doc, slirp, kernel-patch-skas | linux-patch-skas
+Suggests: x-terminal-emulator, rootstrap, user-mode-linux-doc, slirp, linux-patch-skas
 Description: User-mode Linux (kernel)
  User-mode Linux (UML) is a port of the Linux kernel to its own system
  call interface.  It provides a kind of virtual machine, which runs
