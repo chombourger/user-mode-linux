@@ -1,10 +1,11 @@
 user-mode-linux (2.6.18-1um-1) unstable; urgency=low
 
   * New upstream release.
+  * add patches/04_no-syscall from upstream to fix build failure.
   * 'mv debian/NEWS debian/NEWS.Debian' so that it will be catched by
     apt-listchanges.
 
- -- Stefano Melchior <stefano.melchior@openlabs.it>  Tue, 26 Sep 2006 08:53:05 +0200
+ -- Mattia Dongili <malattia@debian.org>  Tue, 03 Oct 2006 20:46:05 +0200
 
 user-mode-linux (2.6.17-1um-2) unstable; urgency=low
 
