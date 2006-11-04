@@ -2,7 +2,7 @@ user-mode-linux (2.6.18-1um-2) unstable; urgency=low
 
   * removed patches/04_no-syscall, included in the 2.6.18 stable branch.
 
- -- Mattia Dongili <malattia@debian.org>  Sat, 04 Nov 2006 05:07:36 PM +0100
+ -- Mattia Dongili <malattia@debian.org>  Sat, 04 Nov 2006 17:07:36 +0100
 
 user-mode-linux (2.6.18-1um-1) unstable; urgency=low
 
