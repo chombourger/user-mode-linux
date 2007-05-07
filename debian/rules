@@ -33,6 +33,11 @@ menuconfig: unpack
 	make -C $(kernel_dir)  menuconfig ARCH=um
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).menuconfig.old
 	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
+
+defconfig: unpack
+	make -C $(kernel_dir)  defconfig ARCH=um
+	cp umldefconfig umldefconfig.old
+	cp $(kernel_dir)/.config umldefconfig
 # 
 # end development only targets
 
