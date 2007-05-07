@@ -4,6 +4,7 @@ user-mode-linux (2.6.20-1um-1) unstable; urgency=low
   * Build against 2.6.20 which _is_ in the archive (Closes: #422398)
   * Included more crypto algorithms [Stefano Melchior] (Closes: #410597)
   * Configured more and more options (Closes: #416517) (Closes: #422145)
+  * Removed 04_include_PAGESHIFT_definition.patch, included upstream
 
  -- Mattia Dongili <malattia@debian.org>  Mon, 07 May 2007 12:20:55 +0900
 
