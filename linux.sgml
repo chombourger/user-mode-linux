@@ -279,11 +279,12 @@ manpage.1: manpage.sgml
           </variablelist>
 
           <para>You can also specify different input and output
-            channels for a device by putting a comma between them:
-            <userinput>ssl3=tty:/dev/tty2,xterm</userinput> .  See
-            <ulink
-            url="file:///usr/share/doc/user-mode-linux-doc/html/input.html">Setting
-            up Serial Lines and Consoles</ulink> for a more information.
+		channels for a device by putting a comma between them:
+		<userinput>ssl3=tty:/dev/tty2,xterm</userinput>
+	  </para>
+	  <para>See <ulink
+		url="file:///usr/share/doc/user-mode-linux-doc/html/input.html">Setting
+		up Serial Lines and Consoles</ulink> for a more information.
           </para>
         </listitem>
       </varlistentry>
