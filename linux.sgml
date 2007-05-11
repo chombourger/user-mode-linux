@@ -280,7 +280,7 @@ manpage.1: manpage.sgml
 
           <para>You can also specify different input and output
             channels for a device by putting a comma between them:
-            <userinput>ssl3=tty:/dev/tty2,xterm</userinput>.  See
+            <userinput>ssl3=tty:/dev/tty2,xterm</userinput> .  See
             <ulink
             url="file:///usr/share/doc/user-mode-linux-doc/html/input.html">Setting
             up Serial Lines and Consoles</ulink> for a more information.
@@ -593,10 +593,10 @@ manpage.1: manpage.sgml
         <term>--showconfig</term>
         <listitem>
           <para>
-            Prints the configuration used to build the kernel:
-	   <userinput>linux --showconfig > config_file</userinput>
-	   prints in "config_file" file the configiguration file with
-	   all the option used to build the "linux" uml kernel.
+           Prints the configuration used to build the kernel.
+	   To print all the options used to build the "linux" uml kernel
+	   and save them in "config_file" you can use
+	   <userinput>linux --showconfig &gt; config_file</userinput>
           </para>
         </listitem>
       </varlistentry>
