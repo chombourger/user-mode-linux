@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux kernel version: 2.6.21
-# Mon May 21 12:31:02 2007
+# Sun May 27 13:23:33 2007
 #
 CONFIG_DEFCONFIG_LIST="arch/$ARCH/defconfig"
 CONFIG_GENERIC_HARDIRQS=y
