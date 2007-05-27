@@ -7,7 +7,7 @@ Uploaders: Andreas Schuldei <andreas@schuldei.org>, Mattia Dongili <malattia@deb
 Standards-Version: 3.7.2
 
 Package: user-mode-linux
-Architecture: i386
+Architecture: i386 amd64
 Depends: uml-utilities (>= 20040406-1)
 Suggests: x-terminal-emulator, rootstrap, user-mode-linux-doc, slirp, linux-patch-skas
 Description: User-mode Linux (kernel)
