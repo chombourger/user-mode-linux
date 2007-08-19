@@ -32,10 +32,6 @@ menuconfig: unpack copy-config
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).menuconfig.old
 	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
 
-defconfig: unpack
-	make -C $(kernel_dir)  defconfig ARCH=um
-	cp umldefconfig umldefconfig.old
-	cp $(kernel_dir)/.config umldefconfig
 # 
 # end development only targets
 
@@ -106,9 +102,6 @@ endif
 	install -m 644 $(kernel_dir)/.config \
 		$(tmp)/usr/share/doc/user-mode-linux/config
 
-	install -m 644 umldefconfig \
-		$(tmp)/usr/share/doc/user-mode-linux/defconfig
-	
 
 # Build architecture-independent files here.
 binary-indep: build install
