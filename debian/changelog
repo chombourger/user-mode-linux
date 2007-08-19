@@ -1,3 +1,10 @@
+user-mode-linux (2.6.22-1um-1) unstable; urgency=low
+
+  * New upstream release (Closes: #436388).
+  * Remove inactive people from uploaders.
+
+ -- Mattia Dongili <malattia@debian.org>  Sun, 19 Aug 2007 11:04:10 +0900
+
 user-mode-linux (2.6.21-1um-1) unstable; urgency=low
 
   * New upstream release.
