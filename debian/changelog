@@ -5,6 +5,8 @@ user-mode-linux (2.6.22-1um-1) unstable; urgency=low
     * remove inactive people from uploaders
     * remove debugging options from .config
     * remove umldefconfig as it's easy to get from the kernel sources
+  [Upstream patch]:
+    * Restructure do_aio (Closes: #438568)
 
  -- Mattia Dongili <malattia@debian.org>  Sun, 19 Aug 2007 11:04:10 +0900
 
