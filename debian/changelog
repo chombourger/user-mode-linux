@@ -1,3 +1,15 @@
+user-mode-linux (2.6.23-1um-1) unstable; urgency=low
+
+  * New upstream release (Closes: #456836).
+  [Mattia Dongili]:
+    * set NETFILTER_XT_TARGET_CONNMARK (Closes: #440083)
+    * bump Standards-Version to 3.7.3
+    * update i386 and amd64 configurations
+    * rework debian/rules because of some bugs detected when building with -j6
+    * remove 04_restructure-do_aio.patch which has been included upstream
+
+ -- Mattia Dongili <malattia@debian.org>  Mon, 24 Dec 2007 17:34:02 +0900
+
 user-mode-linux (2.6.22-1um-1) unstable; urgency=low
 
   * New upstream release (Closes: #436388).
