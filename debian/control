@@ -2,9 +2,9 @@ Source: user-mode-linux
 Section: misc
 Priority: extra
 Maintainer: User Mode Linux Maintainers <pkg-uml-pkgs@lists.alioth.debian.org>
-Build-Depends: debhelper (>> 5.0.0), dpatch, linux-source-2.6.22, docbook-to-man, bzip2, m4, module-init-tools
+Build-Depends: debhelper (>> 5.0.0), dpatch, linux-source-2.6.23, docbook-to-man, bzip2, m4, module-init-tools
 Uploaders: Mattia Dongili <malattia@debian.org>, Stefano Melchior <stefano.melchior@openlabs.it>
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
 
 Package: user-mode-linux
 Architecture: i386 amd64
