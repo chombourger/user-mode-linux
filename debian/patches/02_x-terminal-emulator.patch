@@ -1,17 +1,11 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## 02_x-terminal-emulator - Mattia Dongili <malattia@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Use Debian's x-terminal-emulator
-
-@DPATCH@
-
-# Author: malattia
-# Status: none
-
---- ./arch/um/drivers/xterm.c~clean	2006-04-02 16:43:32.797702685 +0200
-+++ ./arch/um/drivers/xterm.c	2006-04-02 16:43:41.034217435 +0200
-@@ -48,7 +48,7 @@ void *xterm_init(char *str, int device, 
+# Mattia Dongili <malattia@debian.org>
+# Matt Zimmermannn <mdz@debian.org>
+# Use Debian's x-terminal-emulator
+Index: linux-source-2.6.25/arch/um/drivers/xterm.c
+===================================================================
+--- linux-source-2.6.25.orig/arch/um/drivers/xterm.c	2008-07-05 11:16:50.444754992 +0900
++++ linux-source-2.6.25/arch/um/drivers/xterm.c	2008-07-05 11:17:17.624764233 +0900
+@@ -42,7 +42,7 @@ static void *xterm_init(char *str, int d
  }
  
  /* Only changed by xterm_setup, which is a setup */

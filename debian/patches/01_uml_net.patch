@@ -1,16 +1,7 @@
-#! /bin/sh /usr/share/dpatch/dpatch-run
-## 01_uml_net - Mattia Dongili <malattia@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Use Debian's standard location for uml_net helper
-
-@DPATCH@
-
-# Author: malattia
-# Status: none
-
---- ./arch/um/os-Linux/main.c
-+++ ./arch/um/os-Linux/main.c
+# Mattia Dongili <malattia@debian.org>
+# Use Debian's standard location for uml_net helper
+--- a/arch/um/os-Linux/main.c
++++ b/arch/um/os-Linux/main.c
 @@ -74,6 +74,33 @@ static void last_ditch_exit(int sig)
  	exit(1);
  }

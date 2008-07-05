@@ -43,7 +43,7 @@ unpack-stamp:
 
 patch: patch-stamp
 patch-stamp: unpack-stamp
-	dpatch --workdir $(kernel_dir) apply-all
+	(cd $(kernel_dir) && QUILT_PATCHES=$(debian)/patches quilt push -a)
 	touch $@
 
 $(kernel_dir)/.config: config.$(DEB_HOST_ARCH) unpack
@@ -77,8 +77,8 @@ clean-unpatched: unpatch
 	dh_clean
 
 unpatch:
-	dpatch --workdir $(kernel_dir) deapply-all
-	rm -rf patch-stamp $(kernel_dir)/debian
+	(cd $(kernel_dir) && QUILT_PATCHES=$(debian)/patches quilt pop -a || /bin/true)
+	rm -rf patch-stamp $(kernel_dir)/.pc
 
 install: build
 	dh_testdir

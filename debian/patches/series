@@ -1,0 +1,3 @@
+02_x-terminal-emulator.patch
+03_uml_switch.patch
+04_workaround_gcc4.3_ICE.patch
