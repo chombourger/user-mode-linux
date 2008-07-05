@@ -1,0 +1,21 @@
+# Mattia Dongili <malattia@debian.org>
+# 
+# gcc-4.3 dies when building UML 2.6.25
+# -------------------------------------
+# see http://gcc.gnu.org/ml/gcc-bugs/2008-03/msg01433.html
+# apparently not using -fno-unit-at-a-time help but breaks 
+# UML on some fedora version, see
+# http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=commit;h=c0a18111e571138747a98af18b3a2124df56a0d1
+# we can go ahead with this here.
+#
+--- a/arch/um/Makefile	2008-07-04 08:03:01.616755671 +0900
++++ b/arch/um/Makefile	2008-07-04 08:03:20.244755494 +0900
+@@ -77,7 +77,7 @@
+ KERNEL_DEFINES = $(strip -Derrno=kernel_errno -Dsigprocmask=kernel_sigprocmask \
+ 			 -Dmktime=kernel_mktime $(ARCH_KERNEL_DEFINES))
+ KBUILD_CFLAGS += $(KERNEL_DEFINES)
+-KBUILD_CFLAGS += $(call cc-option,-fno-unit-at-a-time,)
++#KBUILD_CFLAGS += $(call cc-option,-fno-unit-at-a-time,)
+ 
+ PHONY += linux
+ 
