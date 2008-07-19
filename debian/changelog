@@ -1,8 +1,11 @@
 user-mode-linux (2.6.25-1um-1) unstable; urgency=low
 
   * New upstream release.
+  * now obviously depends on linux-source-2.6.25 (Closes: #488830)
+  * added a patch successfully build with gcc-4.3 (Closes: #467475)
+  * added a patch to fix UML segfaulting on negative semaphore values
 
- -- Mattia Dongili <malattia@debian.org>  Thu, 03 Jul 2008 21:32:45 +0900
+ -- Mattia Dongili <malattia@debian.org>  Sat, 19 Jul 2008 19:58:26 +0900
 
 user-mode-linux (2.6.24-1um-1) unstable; urgency=low
 
