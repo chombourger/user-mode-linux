@@ -90,7 +90,7 @@ install: build
 	$(MAKE) -C $(kernel_dir) modules_install ARCH=um \
 		INSTALL_MOD_PATH=$(tmpmodules)
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-	find $(tmpmodules) -name '*.o' \
+	find $(tmpmodules) -name '*.ko' \
 		| xargs --no-run-if-empty strip --strip-debug
 endif
 	-rm $(tmpmodules)/lib/modules/*/build
