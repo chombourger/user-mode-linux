@@ -2,3 +2,4 @@
 03_uml_switch.patch
 04_workaround_gcc4.3_ICE.patch
 05_down_interruptible_asmregparam.patch
+06_conditionally_export_memcpy.patch

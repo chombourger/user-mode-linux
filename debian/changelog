@@ -1,3 +1,11 @@
+user-mode-linux (2.6.25-1um-2) unstable; urgency=medium
+
+  * Fix build error in amd64 (Closes: #491921)
+  * slightly bump urgency to try to be in testing quicker to allow a new
+    upload uml 2.6.26 when the kernel team uploads linux-source-2.6.26
+
+ -- Mattia Dongili <malattia@debian.org>  Thu, 24 Jul 2008 07:18:01 +0900
+
 user-mode-linux (2.6.25-1um-1) unstable; urgency=low
 
   * New upstream release.
