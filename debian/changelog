@@ -1,3 +1,12 @@
+user-mode-linux (2.6.26-1um-2) unstable; urgency=low
+
+  * remove debian/patches/08_fix_ptrace_crash.patch (in 2.6.26.1) and
+    rebuild against the current stable revision released from the Debian
+    kernel team
+  * cleanup unused patches
+
+ -- Mattia Dongili <malattia@debian.org>  Sat, 09 Aug 2008 14:29:08 +0900
+
 user-mode-linux (2.6.26-1um-1) unstable; urgency=medium
 
   * New upstream release.
