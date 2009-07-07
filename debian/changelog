@@ -1,6 +1,7 @@
 user-mode-linux (2.6.30-1um-1) unstable; urgency=low
 
   * New upstream release.
+  * Remove 07_vde_user_build_fix which has been merged upstream.
 
  -- Mattia Dongili <malattia@debian.org>  Sun, 05 Jul 2009 11:07:28 +0900
 
