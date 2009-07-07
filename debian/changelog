@@ -8,6 +8,7 @@ user-mode-linux (2.6.30-1um-1) unstable; urgency=low
   * Include more config options (i.e.: IP_VS) (Closes: #509434).
   * Stop suggesting linux-patch-skas, not in the repository anymore
     (Closes: #495651).
+  * Suggest: vde2 for the vde UML network driver.
 
  -- Mattia Dongili <malattia@debian.org>  Sun, 05 Jul 2009 11:07:28 +0900
 
