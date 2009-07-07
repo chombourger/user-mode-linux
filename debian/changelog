@@ -4,6 +4,7 @@ user-mode-linux (2.6.30-1um-1) unstable; urgency=low
   * Remove 07_vde_user_build_fix which has been merged upstream.
   * Add 04_remove_irqf_disabled.patch to bring get a working network inside
     the guest.
+  * Removed possibly MIA uploaders (Stefano Melchior) (Closes: #514667).
   * Include more config options (i.e.: IP_VS) (Closes: #509434).
 
  -- Mattia Dongili <malattia@debian.org>  Sun, 05 Jul 2009 11:07:28 +0900
