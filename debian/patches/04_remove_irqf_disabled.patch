@@ -1,0 +1,14 @@
+http://www.mail-archive.com/user-mode-linux-devel@lists.sourceforge.net/msg06464.html
+This patch make the guest network work again.
+
+--- linux-source-2.6.30.orig/arch/um/drivers/net_kern.c	2009-06-10 12:05:27.000000000 +0900
++++ linux-source-2.6.30/arch/um/drivers/net_kern.c	2009-07-05 23:32:30.952417452 +0900
+@@ -165,7 +165,7 @@ static int uml_net_open(struct net_devic
+ 	}
+ 
+ 	err = um_request_irq(dev->irq, lp->fd, IRQ_READ, uml_net_interrupt,
+-			     IRQF_DISABLED | IRQF_SHARED, dev->name, dev);
++			     IRQF_SHARED, dev->name, dev);
+ 	if (err != 0) {
+ 		printk(KERN_ERR "uml_net_open: failed to get irq(%d)\n", err);
+ 		err = -ENETUNREACH;

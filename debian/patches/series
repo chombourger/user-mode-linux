@@ -1,2 +1,3 @@
 02_x-terminal-emulator.patch
 03_uml_switch.patch
+04_remove_irqf_disabled.patch
