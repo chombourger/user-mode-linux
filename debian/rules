@@ -6,7 +6,7 @@
 #export DH_VERBOSE=1
 
 config_target:=oldconfig
-kernel_version:=2.6.26
+kernel_version:=2.6.30
 kernel_dir:=linux-source-$(kernel_version)
 debian:=$(CURDIR)/debian
 tmp:=$(debian)/user-mode-linux
