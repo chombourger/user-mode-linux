@@ -1,0 +1,17 @@
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=494995
+Fix symbol clash between libc and the kernel.
+
+Index: linux-source-2.6.30/arch/um/Makefile
+===================================================================
+--- linux-source-2.6.30.orig/arch/um/Makefile	2009-07-07 21:18:57.964418085 +0900
++++ linux-source-2.6.30/arch/um/Makefile	2009-07-07 21:19:34.828766443 +0900
+@@ -66,7 +66,8 @@
+ # defines more robust
+ 
+ KERNEL_DEFINES = $(strip -Derrno=kernel_errno -Dsigprocmask=kernel_sigprocmask \
+-			 -Dmktime=kernel_mktime $(ARCH_KERNEL_DEFINES))
++			 -Dmktime=kernel_mktime -Dstrrchr=kernel_strrchr \
++			 $(ARCH_KERNEL_DEFINES))
+ KBUILD_CFLAGS += $(KERNEL_DEFINES)
+ 
+ PHONY += linux
