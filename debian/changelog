@@ -1,3 +1,9 @@
+user-mode-linux (2.6.32-1um-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mattia Dongili <malattia@debian.org>  Sun, 03 Jan 2010 13:54:54 +0900
+
 user-mode-linux (2.6.30-1um-1) unstable; urgency=low
 
   * New upstream release.
