@@ -1,6 +1,11 @@
 user-mode-linux (2.6.32-1um-1) unstable; urgency=low
 
   * New upstream release.
+  [ Mattia Dongili (4) ]
+        Update dependencies and prepare 2.6.32
+        add a patch to fix IF_NOTIFY_RESUME build error
+        Update kernel configurations
+        Allow setting the target architecture ont the command line
 
  -- Mattia Dongili <malattia@debian.org>  Sun, 03 Jan 2010 13:54:54 +0900
 
