@@ -11,7 +11,8 @@ kernel_dir:=linux-source-$(kernel_version)
 debian:=$(CURDIR)/debian
 tmp:=$(debian)/user-mode-linux
 tmpmodules:=$(debian)/uml-modules
-DEB_HOST_ARCH:=$(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_ARCH?=$(shell dpkg-architecture -qDEB_HOST_ARCH)
+SUBARCH?=$(shell uname -m)
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 KBUILDVARS := CFLAGS_KERNEL=-O1
@@ -23,12 +24,12 @@ copy-config:
 	cp config.$(DEB_HOST_ARCH) $(kernel_dir)/.config
 
 oldconfig: unpack copy-config
-	make -C $(kernel_dir) oldconfig ARCH=um
+	make -C $(kernel_dir) oldconfig ARCH=um SUBARCH=$(SUBARCH)
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).oldconfig.old
 	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
 
 menuconfig: unpack copy-config
-	make -C $(kernel_dir)  menuconfig ARCH=um
+	make -C $(kernel_dir)  menuconfig ARCH=um SUBARCH=$(SUBARCH)
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).menuconfig.old
 	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
 
@@ -53,7 +54,7 @@ configure: configure-stamp
 configure-stamp: patch-stamp $(kernel_dir)/.config
 	dh_testdir
 
-	$(MAKE) -C $(kernel_dir) $(config_target) ARCH=um
+	$(MAKE) -C $(kernel_dir) $(config_target) ARCH=um SUBARCH=$(SUBARCH)
 
 	touch $@
 
@@ -61,7 +62,7 @@ build: build-stamp
 build-stamp: configure
 	dh_testdir
 
-	$(MAKE) -C $(kernel_dir) $(KBUILDVARS) linux modules ARCH=um
+	$(MAKE) -C $(kernel_dir) $(KBUILDVARS) linux modules ARCH=um SUBARCH=$(SUBARCH)
 	docbook-to-man linux.sgml > linux.uml.1
 
 	touch $@
@@ -87,7 +88,7 @@ install: build
 	dh_installdirs usr/bin usr/lib/uml usr/share/doc/user-mode-linux
 
 	install $(kernel_dir)/linux $(tmp)/usr/bin/linux.uml
-	$(MAKE) -C $(kernel_dir) modules_install ARCH=um \
+	$(MAKE) -C $(kernel_dir) modules_install ARCH=um SUBARCH=$(SUBARCH) \
 		INSTALL_MOD_PATH=$(tmpmodules)
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	find $(tmpmodules) -name '*.ko' \
