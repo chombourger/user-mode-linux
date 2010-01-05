@@ -1,6 +1,6 @@
 user-mode-linux (2.6.32-1um-1) unstable; urgency=low
 
-  * New upstream release.
+  * New upstream release (Closes: #560673).
   [ Mattia Dongili (4) ]
         Update dependencies and prepare 2.6.32
         add a patch to fix IF_NOTIFY_RESUME build error
