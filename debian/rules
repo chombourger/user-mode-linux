@@ -12,7 +12,7 @@ debian:=$(CURDIR)/debian
 tmp:=$(debian)/user-mode-linux
 tmpmodules:=$(debian)/uml-modules
 DEB_HOST_ARCH?=$(shell dpkg-architecture -qDEB_HOST_ARCH)
-SUBARCH?=$(shell uname -m)
+#SUBARCH?=$(shell uname -m)
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 KBUILDVARS := CFLAGS_KERNEL=-O1
@@ -24,12 +24,12 @@ copy-config:
 	cp config.$(DEB_HOST_ARCH) $(kernel_dir)/.config
 
 oldconfig: unpack copy-config
-	make -C $(kernel_dir) oldconfig ARCH=um SUBARCH=$(SUBARCH)
+	make -C $(kernel_dir) oldconfig ARCH=um
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).oldconfig.old
 	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
 
 menuconfig: unpack copy-config
-	make -C $(kernel_dir)  menuconfig ARCH=um SUBARCH=$(SUBARCH)
+	make -C $(kernel_dir)  menuconfig ARCH=um
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).menuconfig.old
 	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
 
@@ -54,7 +54,7 @@ configure: configure-stamp
 configure-stamp: patch-stamp $(kernel_dir)/.config
 	dh_testdir
 
-	$(MAKE) -C $(kernel_dir) $(config_target) ARCH=um SUBARCH=$(SUBARCH)
+	$(MAKE) -C $(kernel_dir) $(config_target) ARCH=um
 
 	touch $@
 
@@ -62,7 +62,7 @@ build: build-stamp
 build-stamp: configure
 	dh_testdir
 
-	$(MAKE) -C $(kernel_dir) $(KBUILDVARS) linux modules ARCH=um SUBARCH=$(SUBARCH)
+	$(MAKE) -C $(kernel_dir) $(KBUILDVARS) linux modules ARCH=um
 	docbook-to-man linux.sgml > linux.uml.1
 
 	touch $@
@@ -89,7 +89,7 @@ install: build
 	install -D -m 0644 debian/user-mode-linux.lintian debian/user-mode-linux/usr/share/lintian/overrides/user-mode-linux
 
 	install $(kernel_dir)/linux $(tmp)/usr/bin/linux.uml
-	$(MAKE) -C $(kernel_dir) modules_install ARCH=um SUBARCH=$(SUBARCH) \
+	$(MAKE) -C $(kernel_dir) modules_install ARCH=um \
 		INSTALL_MOD_PATH=$(tmpmodules)
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	find $(tmpmodules) -name '*.ko' \
