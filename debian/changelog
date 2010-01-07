@@ -2,13 +2,14 @@ user-mode-linux (2.6.32-1um-1) unstable; urgency=low
 
   * New upstream release (Closes: #560673).
   [ Mattia Dongili (4) ]
-        Make lintian really slightly happier
         Update dependencies and prepare 2.6.32
         add a patch to fix IF_NOTIFY_RESUME build error
         Update kernel configurations
         Allow setting the target architecture ont the command line
+        Make lintian really slightly happier
+        Override -rpath lintian tag, this is required for uml to work
 
- -- Mattia Dongili <malattia@debian.org>  Sun, 03 Jan 2010 13:54:54 +0900
+ -- Mattia Dongili <malattia@debian.org>  Thu, 07 Jan 2010 21:11:42 +0900
 
 user-mode-linux (2.6.30-1um-1) unstable; urgency=low
 
