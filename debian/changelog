@@ -1,3 +1,10 @@
+user-mode-linux (2.6.32-1um-3) unstable; urgency=low
+
+  * Sigh, the new 2.6.32 upload includes the IF_NOTIFY_RESUME patch included
+    in the previous version so u-m-l failed to build again :(
+
+ -- Mattia Dongili <malattia@debian.org>  Fri, 08 Jan 2010 21:30:39 +0900
+
 user-mode-linux (2.6.32-1um-2) unstable; urgency=low
 
   * Fix build failure due to SUBARCH being passed with a wrong value
