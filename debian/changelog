@@ -1,3 +1,9 @@
+user-mode-linux (2.6.32-1um-4) unstable; urgency=high
+
+  * Update kernel config to the latest available for squeeze
+
+ -- Mattia Dongili <malattia@debian.org>  Thu, 27 Jan 2011 07:30:00 +0900
+
 user-mode-linux (2.6.32-1um-3) unstable; urgency=low
 
   * Sigh, the new 2.6.32 upload includes the IF_NOTIFY_RESUME patch included
