@@ -1,3 +1,9 @@
+user-mode-linux (3.2-1um-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Sun, 11 Mar 2012 14:00:24 +0530
+
 user-mode-linux (2.6.32-1um-4) unstable; urgency=high
 
   * Update kernel config to the latest available for squeeze
