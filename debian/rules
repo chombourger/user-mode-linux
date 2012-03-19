@@ -88,13 +88,17 @@ install: build
 	dh_installdirs usr/bin usr/lib/uml usr/share/doc/user-mode-linux
 	install -D -m 0644 debian/user-mode-linux.lintian debian/user-mode-linux/usr/share/lintian/overrides/user-mode-linux
 
-	install $(kernel_dir)/linux $(tmp)/usr/bin/linux.uml
-	$(MAKE) -C $(kernel_dir) modules_install ARCH=um \
-		INSTALL_MOD_PATH=$(tmpmodules)
+	MODSTIP=1
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-	find $(tmpmodules) -name '*.ko' \
-		| xargs --no-run-if-empty strip --strip-debug
+	MODSTIP=0
 endif
+	install $(kernel_dir)/linux $(tmp)/usr/bin/linux.uml
+
+	$(MAKE) -C $(kernel_dir) modules_install \
+		ARCH=um \
+		INSTALL_MOD_PATH=$(tmpmodules) \
+		INSTALL_MOD_STRIP=$(MODSTIP)
+
 	-rm $(tmpmodules)/lib/modules/*/build
 	-rm $(tmpmodules)/lib/modules/*/source
 	mv $(tmpmodules)/lib/modules \
