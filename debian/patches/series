@@ -2,3 +2,4 @@
 03_uml_switch.patch
 04_remove_irqf_disabled.patch
 05_fix_static_build.patch
+06-fix-linkage-on-386-arch.patch
