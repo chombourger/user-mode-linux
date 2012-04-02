@@ -1,8 +1,20 @@
 user-mode-linux (3.2-1um-1) unstable; urgency=low
 
-  * New upstream release
+  [ Mattia Dongili ]
+  * Use the kernel stripping options rather than our own
 
- -- Ritesh Raj Sarraf <rrs@debian.org>  Sun, 11 Mar 2012 14:00:24 +0530
+  [ Ritesh Raj Sarraf ]
+  * New upstream release (Closes: #663437)
+  * Revive the uml kernel config
+    - Enable and use CFQ as the default scheduler.
+    - Enable SELinux and AppArmor
+    - Enable many networking drivers
+    - Enable many SCSI subsystems.
+  * update Vcs-Browser link to anonscm
+  * add myself to uploaders
+  * Add patch from upstream to fix build failure on i386 arch
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Mon, 02 Apr 2012 20:10:23 +0530
 
 user-mode-linux (2.6.32-1um-4) unstable; urgency=high
 
