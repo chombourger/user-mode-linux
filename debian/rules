@@ -58,7 +58,11 @@ configure-stamp: patch-stamp $(kernel_dir)/.config
 
 	touch $@
 
-build: build-stamp
+build: build-arch build-indep
+
+build-arch: build-stamp
+build-indep: build-stamp
+
 build-stamp: configure
 	dh_testdir
 
