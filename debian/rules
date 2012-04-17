@@ -134,6 +134,7 @@ binary-arch: build install
 	dh_installman linux.uml.1
 	dh_installinfo
 #	dh_undocumented
+	dh_installchangelogs $(CURDIR)/debian/changelog
 	dh_link
 	dh_strip
 	dh_compress
