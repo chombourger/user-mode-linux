@@ -2,7 +2,7 @@ Source: user-mode-linux
 Section: kernel
 Priority: extra
 Maintainer: User Mode Linux Maintainers <pkg-uml-pkgs@lists.alioth.debian.org>
-Build-Depends: debhelper (>> 5.0.0), quilt, linux-source-3.2, docbook-to-man, bzip2, m4, module-init-tools, libvdeplug2-dev, libpcap-dev
+Build-Depends: debhelper (>> 5.0.0), quilt, linux-source-3.2, docbook-to-man, bzip2, m4, module-init-tools, libvdeplug2-dev, libpcap-dev, dpkg (>= 1.16.2)
 Uploaders: Mattia Dongili <malattia@debian.org>, Ritesh Raj Sarraf <rrs@debian.org>
 Standards-Version: 3.8.3
 Vcs-Git: git://git.debian.org/git/pkg-uml/user-mode-linux.git
@@ -12,6 +12,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-uml/user-mode-linux.git
 Package: user-mode-linux
 Architecture: i386 amd64
 Depends: ${misc:Depends}, ${shlibs:Depends}, uml-utilities (>= 20040406-1)
+Built-Using: ${Built-Using}
 Suggests: x-terminal-emulator, rootstrap, user-mode-linux-doc, slirp, vde2
 Description: User-mode Linux (kernel)
  User-mode Linux (UML) is a port of the Linux kernel to its own system
