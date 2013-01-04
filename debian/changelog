@@ -1,4 +1,4 @@
-user-mode-linux (3.2-1um-2) unstable; urgency=high
+user-mode-linux (3.2-2um-1) unstable; urgency=high
 
   * Add Built-Using per Policy §7.8 (Closes: #679300).
   * Refresh patches to apply with no fuzz to latest linux-source.
@@ -6,6 +6,7 @@ user-mode-linux (3.2-1um-2) unstable; urgency=high
       SECURITY_APPARMOR_COMPAT_24=y
       NET_SCH_CODEL=m
       FQ_CODEL=m
+  * Bump version number to upload as a proper foreign package.
 
  -- Mattia Dongili <malattia@debian.org>  Fri, 04 Jan 2013 07:11:32 +0900
 
