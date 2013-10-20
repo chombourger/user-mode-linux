@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# User Mode Linux/x86_64 3.11.0 Kernel Configuration
+# User Mode Linux/x86_64 3.11.5 Kernel Configuration
 #
 CONFIG_DEFCONFIG_LIST="arch/$ARCH/defconfig"
 CONFIG_UML=y
@@ -308,7 +308,8 @@ CONFIG_HOSTAUDIO=m
 # Generic Driver Options
 #
 CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
-# CONFIG_DEVTMPFS is not set
+CONFIG_DEVTMPFS=y
+CONFIG_DEVTMPFS_MOUNT=y
 CONFIG_STANDALONE=y
 CONFIG_PREVENT_FIRMWARE_BUILD=y
 CONFIG_FW_LOADER=y
