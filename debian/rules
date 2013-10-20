@@ -6,8 +6,8 @@
 #export DH_VERBOSE=1
 
 config_target:=oldconfig
-kernel_version:=3.2
-kernel_dir:=linux-source-$(kernel_version)
+kernel_version:=3.8
+kernel_src:=linux-source-$(kernel_version)
 BUILT_USING := $(shell dpkg-query -f '$${source:Package} (= $${source:Version}), ' -W linux-source-$(kernel_version))
 debian:=$(CURDIR)/debian
 tmp:=$(debian)/user-mode-linux
@@ -22,17 +22,22 @@ endif
 # development only targets
 #
 copy-config:
-	cp config.$(DEB_HOST_ARCH) $(kernel_dir)/.config
+	cp config.$(DEB_HOST_ARCH) $(kernel_src)/.config
 
-oldconfig: unpack copy-config
-	make -C $(kernel_dir) oldconfig ARCH=um
-	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).oldconfig.old
-	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
+oldconfig32: unpack copy-config
+	make -C $(kernel_src) oldconfig ARCH=um SUBARCH=i386
+	cp config.i386 config.i386.oldconfig.old
+	cp $(kernel_src)/.config config.i386
+
+oldconfig64: unpack copy-config
+	make -C $(kernel_src) oldconfig ARCH=um SUBARCH=x86_64
+	cp config.amd64 config.amd64.oldconfig.old
+	cp $(kernel_src)/.config config.amd64
 
 menuconfig: unpack copy-config
-	make -C $(kernel_dir)  menuconfig ARCH=um
+	make -C $(kernel_src)  menuconfig ARCH=um
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).menuconfig.old
-	cp $(kernel_dir)/.config config.$(DEB_HOST_ARCH)
+	cp $(kernel_src)/.config config.$(DEB_HOST_ARCH)
 
 # 
 # end development only targets
@@ -45,17 +50,17 @@ unpack-stamp:
 
 patch: patch-stamp
 patch-stamp: unpack-stamp
-	(cd $(kernel_dir) && QUILT_PATCHES=$(debian)/patches quilt push -a)
+	(cd $(kernel_src) && QUILT_PATCHES=$(debian)/patches quilt push -a)
 	touch $@
 
-$(kernel_dir)/.config: config.$(DEB_HOST_ARCH) unpack
+$(kernel_src)/.config: config.$(DEB_HOST_ARCH) unpack
 	cp $< $@
 
 configure: configure-stamp
-configure-stamp: patch-stamp $(kernel_dir)/.config
+configure-stamp: patch-stamp $(kernel_src)/.config
 	dh_testdir
 
-	$(MAKE) -C $(kernel_dir) $(config_target) ARCH=um
+	$(MAKE) -C $(kernel_src) $(config_target) ARCH=um
 
 	touch $@
 
@@ -67,7 +72,7 @@ build-indep: build-stamp
 build-stamp: configure
 	dh_testdir
 
-	$(MAKE) -C $(kernel_dir) $(KBUILDVARS) linux modules ARCH=um
+	$(MAKE) -C $(kernel_src) $(KBUILDVARS) linux modules ARCH=um
 	docbook-to-man linux.sgml > linux.uml.1
 
 	touch $@
@@ -78,13 +83,13 @@ clean-unpatched: unpatch
 	dh_testroot
 	rm -f unpack-stamp build-stamp configure-stamp
 
-	rm -rf $(kernel_dir) linux.uml.1 $(tmpmodules) changelog
+	rm -rf $(kernel_src) linux.uml.1 $(tmpmodules) changelog
 
 	dh_clean
 
 unpatch:
-	(cd $(kernel_dir) && QUILT_PATCHES=$(debian)/patches quilt pop -a || /bin/true)
-	rm -rf patch-stamp $(kernel_dir)/.pc
+	(cd $(kernel_src) && QUILT_PATCHES=$(debian)/patches quilt pop -a || /bin/true)
+	rm -rf patch-stamp $(kernel_src)/.pc
 
 install: build
 	dh_testdir
@@ -93,16 +98,16 @@ install: build
 	dh_installdirs usr/bin usr/lib/uml usr/share/doc/user-mode-linux
 	install -D -m 0644 debian/user-mode-linux.lintian debian/user-mode-linux/usr/share/lintian/overrides/user-mode-linux
 
-	MODSTIP=1
+	MODSTRIP=1
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-	MODSTIP=0
+	MODSTRIP=0
 endif
-	install $(kernel_dir)/linux $(tmp)/usr/bin/linux.uml
+	install $(kernel_src)/linux $(tmp)/usr/bin/linux.uml
 
-	$(MAKE) -C $(kernel_dir) modules_install \
+	$(MAKE) -C $(kernel_src) modules_install \
 		ARCH=um \
 		INSTALL_MOD_PATH=$(tmpmodules) \
-		INSTALL_MOD_STRIP=$(MODSTIP)
+		INSTALL_MOD_STRIP=$(MODSTRIP)
 
 	-rm $(tmpmodules)/lib/modules/*/build
 	-rm $(tmpmodules)/lib/modules/*/source
@@ -110,7 +115,7 @@ endif
 		$(tmp)/usr/lib/uml/modules
 	rm -rf $(tmpmodules)
 
-	install -m 644 $(kernel_dir)/.config \
+	install -m 644 $(kernel_src)/.config \
 		$(tmp)/usr/share/doc/user-mode-linux/config
 
 
@@ -144,7 +149,7 @@ binary-arch: build install
 	dh_installdeb
 #	dh_perl
 	dh_shlibdeps
-	dh_gencontrol -- -VBuilt-Using="$(BUILT_USING)"
+	dh_gencontrol -- -VBuilt-Using="$(BUILT_USING)" -VLinux-Source="$(kernel_src)"
 	dh_md5sums
 	dh_builddeb
 
