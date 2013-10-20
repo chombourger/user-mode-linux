@@ -1,3 +1,10 @@
+user-mode-linux (3.11-1um-1) unstable; urgency=high
+
+  * New upstream release (Closes: #712234)
+  * Add NFSv4 support (Closes: #651307)
+
+ -- Mattia Dongili <malattia@debian.org>  Sun, 20 Oct 2013 21:38:50 +0900
+
 user-mode-linux (3.2-2um-1) unstable; urgency=high
 
   * Add Built-Using per Policy §7.8 (Closes: #679300).

@@ -1,3 +1,1 @@
-user-mode-linux binary: binary-or-shlib-defines-rpath usr/bin/linux.uml /lib
-user-mode-linux binary: binary-or-shlib-defines-rpath usr/bin/linux.uml /lib64
 user-mode-linux binary: embedded-library usr/bin/linux.uml: libpcap

@@ -2,9 +2,9 @@ Source: user-mode-linux
 Section: kernel
 Priority: extra
 Maintainer: User Mode Linux Maintainers <pkg-uml-pkgs@lists.alioth.debian.org>
-Build-Depends: debhelper (>> 5.0.0), quilt, ${Linux-Source}, docbook-to-man, bzip2, m4, module-init-tools, libvdeplug2-dev, libpcap-dev, dpkg (>= 1.16.2)
+Build-Depends: debhelper (>> 5.0.0), quilt, linux-source-3.11, docbook-to-man, xz-utils, m4, module-init-tools, libvdeplug2-dev, libpcap-dev, dpkg (>= 1.16.2)
 Uploaders: Mattia Dongili <malattia@debian.org>, Ritesh Raj Sarraf <rrs@debian.org>
-Standards-Version: 3.8.3
+Standards-Version: 3.9.4
 Vcs-Git: git://git.debian.org/git/pkg-uml/user-mode-linux.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-uml/user-mode-linux.git
 
