@@ -1,3 +1,9 @@
+user-mode-linux (3.11-1um-2) unstable; urgency=high
+
+  * enable devtmpfs for udev
+
+ -- Mattia Dongili <malattia@debian.org>  Sun, 20 Oct 2013 23:48:54 +0900
+
 user-mode-linux (3.11-1um-1) unstable; urgency=high
 
   * New upstream release (Closes: #712234)
