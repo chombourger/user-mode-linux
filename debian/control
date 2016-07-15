@@ -11,9 +11,9 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-uml/user-mode-linux.git
 
 Package: user-mode-linux
 Architecture: i386 amd64
-Depends: ${misc:Depends}, ${shlibs:Depends}, uml-utilities (>= 20040406-1)
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Built-Using: ${Built-Using}
-Suggests: x-terminal-emulator, rootstrap, user-mode-linux-doc, slirp, vde2
+Suggests: x-terminal-emulator, rootstrap, user-mode-linux-doc, slirp, vde2, uml-utilities (>= 20040406-1)
 Description: User-mode Linux (kernel)
  User-mode Linux (UML) is a port of the Linux kernel to its own system
  call interface.  It provides a kind of virtual machine, which runs
