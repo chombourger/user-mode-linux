@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: User Mode Linux Maintainers <pkg-uml-pkgs@lists.alioth.debian.org>
 Build-Depends: debhelper (>> 9.0.0), quilt, linux-source-4.6, docbook-to-man, xz-utils, m4, kmod, libvdeplug2-dev, libpcap-dev, bc, dpkg (>= 1.16.2), libssl-dev
 Uploaders: Mattia Dongili <malattia@debian.org>, Ritesh Raj Sarraf <rrs@debian.org>
-Standards-Version: 3.9.4
+Standards-Version: 3.9.8
 Vcs-Git: https://git.debian.org/git/pkg-uml/user-mode-linux.git
 Vcs-Browser: https://anonscm.debian.org/gitweb/?p=pkg-uml/user-mode-linux.git
 
