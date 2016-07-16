@@ -1,3 +1,22 @@
+user-mode-linux (4.6-1um-1) unstable; urgency=medium
+
+  The "DebConf 16 Recharged" Release
+
+  * Initial bump to start work on 4.6 kernel
+  * Replace module-init-tools with the new (superseeding) kmod tool
+  * Update kernel version in debian/rules
+  * Update kernel config files with new features
+  * Add libssl-dev to build depends. Needed to compile newer kernels
+  * Promote uml-utilities to Recommends. The UML team has plans to continue
+    maintaining it. Thanks Mattia
+  * Bump debhelper compatibility to 9
+  * Fix Vcs URLs to secure ones
+  * Replace deprecated dh_clean with dh_prep
+  * Bump Standards Version to 3.9.8
+  * Fix Vcs URL to be canonical
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Sat, 16 Jul 2016 21:48:06 +0530
+
 user-mode-linux (3.12-1um-1) unstable; urgency=high
 
   * New upstream release (Closes: #733351) - aka. I wish there was a better
