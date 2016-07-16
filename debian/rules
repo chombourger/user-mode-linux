@@ -94,7 +94,7 @@ unpatch:
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_prep
 	dh_installdirs usr/bin usr/lib/uml usr/share/doc/user-mode-linux
 	install -D -m 0644 debian/user-mode-linux.lintian debian/user-mode-linux/usr/share/lintian/overrides/user-mode-linux
 
