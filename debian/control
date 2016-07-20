@@ -7,6 +7,7 @@ Uploaders: Mattia Dongili <malattia@debian.org>, Ritesh Raj Sarraf <rrs@debian.o
 Standards-Version: 3.9.8
 Vcs-Git: https://anonscm.debian.org/git/pkg-uml/user-mode-linux.git
 Vcs-Browser: https://anonscm.debian.org/gitweb/?p=pkg-uml/user-mode-linux.git
+Homepage: http://user-mode-linux.sourceforge.net/
 
 
 Package: user-mode-linux
