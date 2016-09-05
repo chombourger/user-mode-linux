@@ -1,3 +1,10 @@
+user-mode-linux (4.7-1um-1) unstable; urgency=medium
+
+  * [c36fba9] Add homepage field
+  * [6aada24] Bump linux version to 4.7
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Mon, 05 Sep 2016 18:40:07 +0530
+
 user-mode-linux (4.6-1um-1) unstable; urgency=medium
 
   The "DebConf 16 Recharged" Release
