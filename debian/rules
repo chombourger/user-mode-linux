@@ -16,8 +16,11 @@ DEB_HOST_ARCH?=$(shell dpkg-architecture -qDEB_HOST_ARCH)
 #SUBARCH?=$(shell uname -m)
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-KBUILDVARS := CFLAGS_KERNEL=-O1
+CFLAGS_KERNEL += -O1
 endif
+
+KBUILDVARS := CFLAGS_KERNEL="$(CFLAGS_KERNEL)" CC="$(CC) -no-pie"
+LD="$(LD) -no-pie"
 
 # development only targets
 #
