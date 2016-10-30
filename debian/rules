@@ -28,17 +28,17 @@ copy-config:
 	cp config.$(DEB_HOST_ARCH) $(kernel_src)/.config
 
 oldconfig32: unpack copy-config
-	make -C $(kernel_src) oldconfig ARCH=um SUBARCH=i386
+	CC=gcc-5 make -C $(kernel_src) oldconfig ARCH=um SUBARCH=i386
 	cp config.i386 config.i386.oldconfig.old
 	cp $(kernel_src)/.config config.i386
 
 oldconfig64: unpack copy-config
-	make -C $(kernel_src) oldconfig ARCH=um SUBARCH=x86_64
+	CC=gcc-5 make -C $(kernel_src) oldconfig ARCH=um SUBARCH=x86_64
 	cp config.amd64 config.amd64.oldconfig.old
 	cp $(kernel_src)/.config config.amd64
 
 menuconfig: unpack copy-config
-	make -C $(kernel_src)  menuconfig ARCH=um
+	CC=gcc-5 make -C $(kernel_src)  menuconfig ARCH=um
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).menuconfig.old
 	cp $(kernel_src)/.config config.$(DEB_HOST_ARCH)
 
