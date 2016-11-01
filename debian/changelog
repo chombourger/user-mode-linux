@@ -1,3 +1,11 @@
+user-mode-linux (4.8-1um-1) unstable; urgency=medium
+
+  * [b4834f3] Use gcc-5 to build the kernel
+  * [ee7785d] Revert "Fix uml kernel build, disabling PIE and bindnow"
+  * [e0b3e3d] Bump linux version to 4.8
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Tue, 01 Nov 2016 17:53:39 +0530
+
 user-mode-linux (4.7-1um-2) unstable; urgency=medium
 
   * [9a4719f] Fix uml kernel build, disabling PIE and bindnow.
