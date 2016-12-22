@@ -1,3 +1,9 @@
+user-mode-linux (4.8-1um-2) unstable; urgency=medium
+
+  * Rebuild with latest Linux 4.8, with all stable security fixes 
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Thu, 22 Dec 2016 15:04:58 +0530
+
 user-mode-linux (4.8-1um-1) unstable; urgency=medium
 
   * [b4834f3] Use gcc-5 to build the kernel
