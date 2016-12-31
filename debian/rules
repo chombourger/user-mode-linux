@@ -19,26 +19,23 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 KBUILDVARS := CFLAGS_KERNEL=-O1
 endif
 
-# Compile UML with gcc-5
-CC='CC=gcc-5'
-
 # development only targets
 #
 copy-config:
 	cp config.$(DEB_HOST_ARCH) $(kernel_src)/.config
 
 oldconfig32: unpack copy-config
-	make -C $(kernel_src) oldconfig $(CC) ARCH=um SUBARCH=i386
+	make -C $(kernel_src) oldconfig ARCH=um SUBARCH=i386
 	cp config.i386 config.i386.oldconfig.old
 	cp $(kernel_src)/.config config.i386
 
 oldconfig64: unpack copy-config
-	make -C $(kernel_src) oldconfig $(CC) ARCH=um SUBARCH=x86_64
+	make -C $(kernel_src) oldconfig ARCH=um SUBARCH=x86_64
 	cp config.amd64 config.amd64.oldconfig.old
 	cp $(kernel_src)/.config config.amd64
 
 menuconfig: unpack copy-config
-	make -C $(kernel_src)  menuconfig $(CC) ARCH=um
+	make -C $(kernel_src)  menuconfig ARCH=um
 	cp config.$(DEB_HOST_ARCH) config.$(DEB_HOST_ARCH).menuconfig.old
 	cp $(kernel_src)/.config config.$(DEB_HOST_ARCH)
 
@@ -63,7 +60,7 @@ configure: configure-stamp
 configure-stamp: patch-stamp $(kernel_src)/.config
 	dh_testdir
 
-	$(MAKE) -C $(kernel_src) $(config_target) $(CC) ARCH=um
+	$(MAKE) -C $(kernel_src) $(config_target) ARCH=um
 
 	touch $@
 
@@ -75,7 +72,7 @@ build-indep: build-stamp
 build-stamp: configure
 	dh_testdir
 
-	$(MAKE) -C $(kernel_src) $(KBUILDVARS) linux modules $(CC) ARCH=um
+	$(MAKE) -C $(kernel_src) $(KBUILDVARS) linux modules ARCH=um
 	docbook-to-man linux.sgml > linux.uml.1
 
 	touch $@
@@ -108,7 +105,6 @@ endif
 	install $(kernel_src)/linux $(tmp)/usr/bin/linux.uml
 
 	$(MAKE) -C $(kernel_src) modules_install \
-	    	$(CC) \
 		ARCH=um \
 		INSTALL_MOD_PATH=$(tmpmodules) \
 		INSTALL_MOD_STRIP=$(MODSTRIP)
