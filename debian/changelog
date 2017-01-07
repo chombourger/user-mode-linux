@@ -1,3 +1,11 @@
+user-mode-linux (4.8-1um-3) unstable; urgency=medium
+
+  * [127dbbc] Drop dependency on gcc-5
+  * [1b4b24d] Enable parallel build
+  * Rebuild with latest Linux 4.8, 4.8.15-2
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Sat, 07 Jan 2017 20:42:32 +0530
+
 user-mode-linux (4.8-1um-2) unstable; urgency=medium
 
   * Rebuild with latest Linux 4.8, with all stable security fixes 
