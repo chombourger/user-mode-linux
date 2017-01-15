@@ -1,3 +1,9 @@
+user-mode-linux (4.9-1um-1) unstable; urgency=medium
+
+  * [e2e3efe] New Linux Release: 4.9
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Sat, 14 Jan 2017 14:45:22 +0530
+
 user-mode-linux (4.8-1um-3) unstable; urgency=medium
 
   * [127dbbc] Drop dependency on gcc-5
