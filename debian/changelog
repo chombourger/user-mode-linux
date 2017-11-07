@@ -1,3 +1,10 @@
+user-mode-linux (4.13-1um-1) unstable; urgency=medium
+
+  * [a1b6db8] Bump UML to newer 4.13 kernel (Closes: #880304)
+  * [c516bca] Add debian/gbp.conf
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Tue, 07 Nov 2017 21:53:50 +0530
+
 user-mode-linux (4.9-1um-1) unstable; urgency=medium
 
   * [e2e3efe] New Linux Release: 4.9
