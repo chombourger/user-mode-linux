@@ -1,3 +1,10 @@
+user-mode-linux (4.14-1um-1) unstable; urgency=medium
+
+  * [8fdb9d1] Newer Linux version, 4.14
+  * [398892e] Refresh patches
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Tue, 26 Dec 2017 09:00:59 +0530
+
 user-mode-linux (4.13-1um-1) unstable; urgency=medium
 
   * [a1b6db8] Bump UML to newer 4.13 kernel (Closes: #880304)
