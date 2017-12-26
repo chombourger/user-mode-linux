@@ -6,23 +6,19 @@ Date:   Fri Apr 6 07:18:17 2012 +0900
     
     Signed-off-by: Mattia Dongili <malattia@linux.it>
 
-diff --git a/arch/um/Makefile b/arch/um/Makefile
-index 133f7de..1c9d353 100644
 --- a/arch/um/Makefile
 +++ b/arch/um/Makefile
-@@ -107,7 +107,6 @@ archheaders:
+@@ -122,7 +122,6 @@
  archprepare: include/generated/user_constants.h
  
  LINK-$(CONFIG_LD_SCRIPT_STATIC) += -static
--LINK-$(CONFIG_LD_SCRIPT_DYN) += -Wl,-rpath,/lib
+-LINK-$(CONFIG_LD_SCRIPT_DYN) += -Wl,-rpath,/lib $(call cc-option, -no-pie)
  
  CFLAGS_NO_HARDENING := $(call cc-option, -fno-PIC,) $(call cc-option, -fno-pic,) \
  	$(call cc-option, -fno-stack-protector,) \
-diff --git a/arch/x86/Makefile.um b/arch/x86/Makefile.um
-index 36b62bc..d922e86 100644
 --- a/arch/x86/Makefile.um
 +++ b/arch/x86/Makefile.um
-@@ -50,9 +50,6 @@ KBUILD_CPPFLAGS += -m64
+@@ -51,9 +51,6 @@
  ELF_ARCH := i386:x86-64
  ELF_FORMAT := elf64-x86-64
  
