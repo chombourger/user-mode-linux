@@ -1,0 +1,42 @@
+um: Use POSIX ucontext_t instead of struct ucontext
+
+glibc 2.26 removed the 'struct ucontext' to "improve" POSIX compliance
+and break programs, including User Mode Linux. Fix User Mode Linux
+by using POSIX ucontext_t.
+
+This fixes:
+
+arch/um/os-Linux/signal.c: In function 'hard_handler':
+arch/um/os-Linux/signal.c:163:22: error: dereferencing pointer to incomplete type 'struct ucontext'
+  mcontext_t *mc = &uc->uc_mcontext;
+arch/x86/um/stub_segv.c: In function 'stub_segv_handler':
+arch/x86/um/stub_segv.c:16:13: error: dereferencing pointer to incomplete type 'struct ucontext'
+          &uc->uc_mcontext);
+
+Cc: stable@vger.kernel.org
+Signed-off-by: Krzysztof Mazur <krzysiek@podlesie.net>
+Signed-off-by: Richard Weinberger <richard@nod.at>
+
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=aad882d0438793a155caf6babcfa22dee9f08608
+--- a/arch/um/os-Linux/signal.c
++++ b/arch/um/os-Linux/signal.c
+@@ -159,7 +159,7 @@
+ 
+ static void hard_handler(int sig, siginfo_t *si, void *p)
+ {
+-	struct ucontext *uc = p;
++	ucontext_t *uc = p;
+ 	mcontext_t *mc = &uc->uc_mcontext;
+ 	unsigned long pending = 1UL << sig;
+ 
+--- a/arch/x86/um/stub_segv.c
++++ b/arch/x86/um/stub_segv.c
+@@ -10,7 +10,7 @@
+ void __attribute__ ((__section__ (".__syscall_stub")))
+ stub_segv_handler(int sig, siginfo_t *info, void *p)
+ {
+-	struct ucontext *uc = p;
++	ucontext_t *uc = p;
+ 
+ 	GET_FAULTINFO_FROM_MC(*((struct faultinfo *) STUB_DATA),
+ 			      &uc->uc_mcontext);
