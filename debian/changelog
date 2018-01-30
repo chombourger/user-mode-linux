@@ -1,3 +1,10 @@
+user-mode-linux (4.14-1um-2) unstable; urgency=medium
+
+  * [5b667b5] Use POSIX ucontext_t instead of struct ucontext
+    (Closes: #887761)
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Tue, 30 Jan 2018 17:39:04 +0530
+
 user-mode-linux (4.14-1um-1) unstable; urgency=medium
 
   * [8fdb9d1] Newer Linux version, 4.14
