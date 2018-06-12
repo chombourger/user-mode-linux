@@ -1,3 +1,16 @@
+user-mode-linux (4.16-1um-1) unstable; urgency=medium
+
+  * [4f0e0a8] Switch packaging repository to Salsa
+  * [94e916a] Switch Maintainer email address (Closes: #899720)
+  * [0e56bcc] Use tracker as maintainer email address
+  * [0f68dd3] Update to Linux 4.16
+  * [98f3862] Drop patch 08-use-posix-ucontext.patch
+    Merged in Linux 4.16
+  * [38116f5] Add bison to build dependency
+  * [e5ae8d8] Add flex to build dependency
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Tue, 12 Jun 2018 10:24:43 +0545
+
 user-mode-linux (4.15-1um-1) unstable; urgency=medium
 
   * [688b914] New Linux Release
