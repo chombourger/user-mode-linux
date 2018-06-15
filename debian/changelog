@@ -1,3 +1,11 @@
+user-mode-linux (4.16-1um-2) unstable; urgency=medium
+
+  * [3a7ffd8] Fix build failure on i386 architecture.
+    Thanks to Richard Weinberger
+  * [ac554e8] Refresh patches
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Fri, 15 Jun 2018 15:25:30 +0545
+
 user-mode-linux (4.16-1um-1) unstable; urgency=medium
 
   * [4f0e0a8] Switch packaging repository to Salsa
