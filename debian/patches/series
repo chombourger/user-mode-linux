@@ -4,3 +4,4 @@
 06-fix-linkage-on-386-arch.patch
 07-remove-rpath.patch
 fix-i386-ptrace-build.patch
+fix-port-helper-path.patch
