@@ -1,3 +1,11 @@
+user-mode-linux (4.19-1um-1) unstable; urgency=medium
+
+  * [a505b8d] Update to Linux 4.19 (Closes: #916958)
+  * [537c895] Drop patch fix-i386-ptrace-build.patch. Merged upstream
+  * [fe91d84] Refresh patch
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Thu, 27 Dec 2018 13:16:23 +0530
+
 user-mode-linux (4.17-1um-1) unstable; urgency=medium
 
   * [c640a0e] Add patch to fix port-helper architecture dependent path
