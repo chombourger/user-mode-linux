@@ -6,9 +6,11 @@ Date:   Fri Apr 6 07:18:17 2012 +0900
     
     Signed-off-by: Mattia Dongili <malattia@linux.it>
 
---- a/arch/um/Makefile
-+++ b/arch/um/Makefile
-@@ -129,7 +129,6 @@
+Index: user-mode-linux/arch/um/Makefile
+===================================================================
+--- user-mode-linux.orig/arch/um/Makefile	2018-12-27 12:33:19.125192267 +0530
++++ user-mode-linux/arch/um/Makefile	2018-12-27 12:33:19.125192267 +0530
+@@ -120,7 +120,6 @@
  archprepare: include/generated/user_constants.h
  
  LINK-$(CONFIG_LD_SCRIPT_STATIC) += -static
@@ -16,9 +18,11 @@ Date:   Fri Apr 6 07:18:17 2012 +0900
  
  CFLAGS_NO_HARDENING := $(call cc-option, -fno-PIC,) $(call cc-option, -fno-pic,) \
  	$(call cc-option, -fno-stack-protector,) \
---- a/arch/x86/Makefile.um
-+++ b/arch/x86/Makefile.um
-@@ -51,9 +51,6 @@
+Index: user-mode-linux/arch/x86/Makefile.um
+===================================================================
+--- user-mode-linux.orig/arch/x86/Makefile.um	2018-12-27 12:33:19.125192267 +0530
++++ user-mode-linux/arch/x86/Makefile.um	2018-12-27 12:33:19.125192267 +0530
+@@ -49,9 +49,6 @@
  ELF_ARCH := i386:x86-64
  ELF_FORMAT := elf64-x86-64
  
