@@ -3,7 +3,7 @@ Fix symbol clash between libc and the kernel.
 
 --- a/arch/um/Makefile
 +++ b/arch/um/Makefile
-@@ -95,7 +95,8 @@
+@@ -93,7 +93,8 @@
  # defines more robust
  
  KERNEL_DEFINES = $(strip -Derrno=kernel_errno -Dsigprocmask=kernel_sigprocmask \
