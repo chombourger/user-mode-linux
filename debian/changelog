@@ -1,3 +1,16 @@
+user-mode-linux (5.2-1um-1) unstable; urgency=medium
+
+  * [c5a5e78] Drop Mattia Dongili from Uploaders list (Closes: #933156)
+  * [500e629] Update to Linux 5.2 (Closes: #938962)
+  * [2ce49b7] Drop patch fix-port-helper-path.patch. Applied upstream
+  * [659a640] Refresh patches
+  * [84a2a9c] Update UML kernel configuration to 5.2
+  * [d61f9d5] Add patch 08-fix-pcap-linkage.patch to fix pcap linkage.
+    Thanks to Anton Ivanov
+  * [54590ee] Disable CONFIG_UML_NET_PCAP to avoid linkage with pcap
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Thu, 17 Oct 2019 16:53:36 +0530
+
 user-mode-linux (4.19-1um-1) unstable; urgency=medium
 
   * [a505b8d] Update to Linux 4.19 (Closes: #916958)
