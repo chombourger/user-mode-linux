@@ -6,7 +6,7 @@ Build-Depends: debhelper (>> 9.0.0), quilt, linux-source-5.2, docbook-to-man, xz
 Uploaders: Ritesh Raj Sarraf <rrs@debian.org>
 Standards-Version: 3.9.8
 Vcs-Git: https://salsa.debian.org/uml-team/user-mode-linux.git
-Vcs-Browser: https://salsa.debian.org/uml-team/user-mode-linux.git
+Vcs-Browser: https://salsa.debian.org/uml-team/user-mode-linux
 Homepage: http://user-mode-linux.sourceforge.net/
 
 
