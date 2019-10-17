@@ -21,7 +21,7 @@ Signed-off-by: Anton Ivanov <anton.ivanov@cambridgegreys.com>
 +# This file should be included from link-vmlinux, not executed!!!
 +
 +if [ "${CONFIG_UML_NET_VDE}" = "y" ] ; then
-+       UML_EXTRA_LIBS="$UML_EXTRA_LIBS -lvde -lvdeplug"
++       UML_EXTRA_LIBS="$UML_EXTRA_LIBS -lvdeplug"
 +fi
 +if [ "${CONFIG_UML_NET_PCAP}" = "y" ] ; then
 +       UML_EXTRA_LIBS="$UML_EXTRA_LIBS -lpcap"
