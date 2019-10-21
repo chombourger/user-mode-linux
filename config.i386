@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/um 5.2.9 Kernel Configuration
+# Linux/um 5.2.17 Kernel Configuration
 #
 
 #
@@ -229,6 +229,7 @@ CONFIG_CPU_SUP_TRANSMETA_32=y
 # end of Host processor type and features
 
 CONFIG_UML_X86=y
+# CONFIG_64BIT is not set
 CONFIG_X86_32=y
 CONFIG_ARCH_DEFCONFIG="arch/um/configs/i386_defconfig"
 CONFIG_3_LEVEL_PGTABLES=y
