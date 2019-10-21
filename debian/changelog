@@ -1,3 +1,13 @@
+user-mode-linux (5.3-1um-1) unstable; urgency=medium
+
+  * [10ebf91] Update to track Linux 5.3
+  * [52d3b7c] Update uml kernel config to 5.3
+  * [f424b72] Update i386 kernel configuration.
+    Thanks to Bastian Blank
+  * [d25b501] Mark rules require root to no
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Tue, 22 Oct 2019 13:45:43 +0530
+
 user-mode-linux (5.2-1um-2) unstable; urgency=medium
 
   * [49a481e] Add gcc-multilib to build depends. Should fix FTBFS on i386
