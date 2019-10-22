@@ -6,7 +6,7 @@
 #export DH_VERBOSE=1
 
 config_target:=oldconfig
-kernel_version:=5.2
+kernel_version:=5.3
 kernel_src:=linux-source-$(kernel_version)
 BUILT_USING := $(shell dpkg-query -f '$${source:Package} (= $${source:Version}), ' -W linux-source-$(kernel_version))
 debian:=$(CURDIR)/debian

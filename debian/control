@@ -2,7 +2,7 @@ Source: user-mode-linux
 Section: kernel
 Priority: extra
 Maintainer: User Mode Linux Maintainers <team+uml@tracker.debian.org>
-Build-Depends: debhelper (>> 12.0.0), quilt, linux-source-5.2, docbook-to-man, xz-utils, m4, kmod, libvdeplug2-dev, libpcap-dev, bc, dpkg (>= 1.16.2), libssl-dev, bison, flex, gcc-multilib
+Build-Depends: debhelper (>> 12.0.0), quilt, linux-source-5.3, docbook-to-man, xz-utils, m4, kmod, libvdeplug2-dev, libpcap-dev, bc, dpkg (>= 1.16.2), libssl-dev, bison, flex, gcc-multilib
 Uploaders: Ritesh Raj Sarraf <rrs@debian.org>
 Standards-Version: 4.4.1
 Rules-Requires-Root: no
