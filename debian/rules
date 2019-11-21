@@ -5,8 +5,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-config_target:=oldconfig
-kernel_version:=4.17
+config_target:=olddefconfig
+kernel_version:=4.18.0
 kernel_src:=linux-source-$(kernel_version)
 BUILT_USING := $(shell dpkg-query -f '$${source:Package} (= $${source:Version}), ' -W linux-source-$(kernel_version))
 debian:=$(CURDIR)/debian
@@ -46,7 +46,7 @@ menuconfig: unpack copy-config
 
 unpack: unpack-stamp
 unpack-stamp:
-	tar -x -f /usr/src/linux-source-$(kernel_version).tar.xz
+	tar -x -f /usr/src/linux-source-$(kernel_version).tar.bz2
 	touch $@
 
 patch: patch-stamp
