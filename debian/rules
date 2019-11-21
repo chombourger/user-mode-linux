@@ -5,7 +5,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-config_target:=oldconfig
+config_target:=olddefconfig
 kernel_version:=4.19
 kernel_src:=linux-source-$(kernel_version)
 BUILT_USING := $(shell dpkg-query -f '$${source:Package} (= $${source:Version}), ' -W linux-source-$(kernel_version))

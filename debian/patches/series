@@ -3,4 +3,3 @@
 05_fix_static_build.patch
 06-fix-linkage-on-386-arch.patch
 07-remove-rpath.patch
-fix-port-helper-path.patch

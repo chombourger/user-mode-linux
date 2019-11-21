@@ -1,3 +1,9 @@
+user-mode-linux (1:4.19-buster1) buster; urgency=medium
+
+  * Make device-mapper builtin
+
+ -- Cedric Hombourger <chombourger@gmail.com>  Thu, 21 Nov 2019 14:03:54 +0100
+
 user-mode-linux (4.19-1um-1) unstable; urgency=medium
 
   * [a505b8d] Update to Linux 4.19 (Closes: #916958)
