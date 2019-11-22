@@ -1,3 +1,9 @@
+user-mode-linux (1:4.19-buster2) buster; urgency=medium
+
+  * Make VFAT built-in as well as typical code-pages
+
+ -- Cedric Hombourger <chombourger@gmail.com>  Fri, 22 Nov 2019 16:16:47 +0100
+
 user-mode-linux (1:4.19-buster1) buster; urgency=medium
 
   * Make device-mapper builtin
