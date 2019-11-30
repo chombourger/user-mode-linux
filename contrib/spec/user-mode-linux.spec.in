@@ -20,10 +20,10 @@ URL:     https://%{import_path}
 Source0: %{git0}/archive/%{commit0}/%{repo}-%{shortcommit0}.tar.gz
 Source1: linux-4.18.tar.xz
 
+BuildRequires: bc
 BuildRequires: bison
 BuildRequires: elfutils-libelf-devel
 BuildRequires: flex
-BuildRequires: kernel-devel
 BuildRequires: make
 
 %description
