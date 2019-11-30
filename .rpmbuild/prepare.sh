@@ -1,0 +1,25 @@
+#!/bin/sh -euf
+set -x
+
+if [ ! -e /usr/bin/git ]; then
+    dnf -y install git-core
+fi
+
+git fetch --unshallow || :
+
+COMMIT=$(git rev-parse HEAD)
+COMMIT_SHORT=$(git rev-parse --short=8 HEAD)
+COMMIT_NUM=$(git rev-list HEAD --count)
+COMMIT_DATE=$(date +%s)
+
+
+sed "s,#COMMIT#,${COMMIT},;
+     s,#SHORTCOMMIT#,${COMMIT_SHORT},;
+     s,#COMMITNUM#,${COMMIT_NUM},;
+     s,#COMMITDATE#,${COMMIT_DATE}," \
+         contrib/spec/user-mode-linux.spec.in > contrib/spec/user-mode-linux.spec
+
+mkdir -p build/
+git archive --prefix "user-mode-linux-${COMMIT_SHORT}/" --format "tar.gz" HEAD -o "build/user-mode-linux-${COMMIT_SHORT}.tar.gz"
+cd build
+wget -c https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.xz

@@ -1,0 +1,61 @@
+
+%global debug_package   %{nil}
+
+%global provider github
+%global provider_tld com
+%global project chombourger
+%global repo user-mode-linux
+%global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
+%global import_path %{provider_prefix}
+%global git0 https://%{provider}.%{provider_tld}/%{project}/%{repo}
+%global commit0 #COMMIT#
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:8})
+
+Name:    user-mode-linux
+Version: 4.18.0
+Release: #COMMITDATE#.git%{shortcommit0}%{?dist}
+Summary: User-mode Linux (kernel)
+License: GPLv2
+URL:     https://%{import_path}
+Source0: %{git0}/archive/%{commit0}/%{repo}-%{shortcommit0}.tar.gz
+Source1: linux-4.18.tar.xz
+
+BuildRequires: bison
+BuildRequires: elfutils-libelf-devel
+BuildRequires: flex
+BuildRequires: kernel-devel
+BuildRequires: make
+
+%description
+User-mode Linux (UML) is a port of the Linux kernel to its own system call
+interface. It provides a kind of virtual machine, which runs Linux as a user
+process under another Linux kernel. This is useful for kernel development,
+sandboxes, jails, experimentation, and many other things.
+
+%prep
+%autosetup -Sgit -n %{repo}-%{shortcommit0}
+rm -rf linux-4.18
+tar Jxf %{SOURCE1}
+
+%build
+cp config.amd64 linux-4.18/.config
+
+pushd linux-4.18
+make ARCH=um SUBARCH=x86_64 olddefconfig
+make ARCH=um SUBARCH=x86_64 linux
+popd
+
+%install
+install -d %{buildroot}%{_bindir}
+install -p -m 755 linux-4.18/linux %{buildroot}%{_bindir}
+
+%check
+# no tests
+
+%files
+%{_bindir}/linux
+
+%changelog
+* Fri Nov 29 2019 Cedric Hombourger <chombourger@gmail.com>
+- Package upstream version 1.0.10
+
