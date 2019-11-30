@@ -5,6 +5,10 @@ if [ ! -e /usr/bin/git ]; then
     dnf -y install git-core
 fi
 
+if [ ! -e /usr/bin/wget ]; then
+    dnf -y install wget
+fi
+
 git fetch --unshallow || :
 
 COMMIT=$(git rev-parse HEAD)
