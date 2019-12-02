@@ -1,3 +1,9 @@
+user-mode-linux (1:4.19-buster3) buster; urgency=medium
+
+  * Enable the 'selinux' boot parameter
+
+ -- Cedric Hombourger <chombourger@gmail.com>  Mon, 02 Dec 2019 22:33:41 +0100
+
 user-mode-linux (1:4.19-buster2) buster; urgency=medium
 
   * Make VFAT built-in as well as typical code-pages
