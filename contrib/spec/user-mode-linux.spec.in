@@ -56,6 +56,8 @@ install -p -m 755 linux-4.18/linux %{buildroot}%{_bindir}
 %{_bindir}/linux
 
 %changelog
+* Tue Dec 3 2019 Cedric Hombourger <chombourger@gmail.com>
+- Enable 'selinux' boot parameter
 * Fri Nov 29 2019 Cedric Hombourger <chombourger@gmail.com>
-- Package upstream version 1.0.10
+- Initial package based on Linux kernel 4.18
 
