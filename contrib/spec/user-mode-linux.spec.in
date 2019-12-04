@@ -56,8 +56,9 @@ install -p -m 755 linux-4.18/linux %{buildroot}%{_bindir}
 %{_bindir}/linux
 
 %changelog
+* Wed Dec 4 2019 Cedric Hombourger <chombourger@gmail.com>
+- Enable the NILFS2 file-system as a kernel built-in
 * Tue Dec 3 2019 Cedric Hombourger <chombourger@gmail.com>
 - Enable 'selinux' boot parameter
 * Fri Nov 29 2019 Cedric Hombourger <chombourger@gmail.com>
 - Initial package based on Linux kernel 4.18
-
