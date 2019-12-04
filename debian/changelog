@@ -1,3 +1,9 @@
+user-mode-linux (1:4.19-buster4) buster; urgency=medium
+
+  * Enable the NILFS2 file-system as a built-in module
+
+ -- Cedric Hombourger <chombourger@gmail.com>  Wed, 04 Dec 2019 06:22:46 +0100
+
 user-mode-linux (1:4.19-buster3) buster; urgency=medium
 
   * Enable the 'selinux' boot parameter
