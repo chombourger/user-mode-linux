@@ -1,4 +1,4 @@
-Source: user-mode-linux
+Source: seine-uml
 Section: kernel
 Priority: extra
 Maintainer: User Mode Linux Maintainers <team+uml@tracker.debian.org>
@@ -10,18 +10,16 @@ Vcs-Browser: https://salsa.debian.org/uml-team/user-mode-linux.git
 Homepage: http://user-mode-linux.sourceforge.net/
 
 
-Package: user-mode-linux
-Architecture: i386 amd64
+Package: seine-uml
+Architecture: amd64
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Built-Using: ${Built-Using}
 Recommends: uml-utilities (>= 20040406-1)
 Suggests: x-terminal-emulator, rootstrap, user-mode-linux-doc, slirp, vde2
-Description: User-mode Linux (kernel)
+Description: User-mode Linux for seine (kernel)
  User-mode Linux (UML) is a port of the Linux kernel to its own system
  call interface.  It provides a kind of virtual machine, which runs
- Linux as a user process under another Linux kernel.  This is useful
- for kernel development, sandboxes, jails, experimentation, and many
- other things.
+ Linux as a user process under another Linux kernel.  It is used by
+ seine to create file-system images from a root file-system tarball.
  .
- This package contains the kernel itself, as an executable program,
- and the associated kernel modules.
+ This package contains the kernel itself as an executable program.
