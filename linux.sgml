@@ -13,14 +13,14 @@ manpage.1: manpage.sgml
   <!ENTITY dhfirstname "<firstname>Matt</firstname>">
   <!ENTITY dhsurname   "<surname>Zimmerman</surname>">
   <!-- Please adjust the date whenever revising the manpage. -->
-  <!ENTITY dhdate      "<date>December  6, 2001</date>">
+  <!ENTITY dhdate      "<date>December 14, 2019</date>">
   <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
        allowed: see man(7), man(1). -->
   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
   <!ENTITY dhemail     "<email>mdz@debian.org</email>">
   <!ENTITY dhusername  "Matt Zimmerman">
-  <!ENTITY dhucpackage "<refentrytitle>LINUX</refentrytitle>">
-  <!ENTITY dhpackage   "linux">
+  <!ENTITY dhucpackage "<refentrytitle>SEINE-UML</refentrytitle>">
+  <!ENTITY dhpackage   "seine-uml">
 
   <!ENTITY debian      "<productname>Debian GNU/Linux</productname>">
   <!ENTITY gnu         "<acronym>GNU</acronym>">
@@ -53,7 +53,7 @@ manpage.1: manpage.sgml
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
-      <command>linux</command>
+      <command>seine-uml</command>
       <arg choice=opt rep=repeat><replaceable>options</replaceable></arg>
 
     </cmdsynopsis>
@@ -65,7 +65,7 @@ manpage.1: manpage.sgml
 
     <para>This manual page was written for the &debian; distribution
       because the original program does not have a manual page.  Check
-      <command>linux --help</command> for an up-to-date synopsis.</para>
+      <command>seine-uml --help</command> for an up-to-date synopsis.</para>
 
   </refsect1>
   <refsect1>
@@ -283,7 +283,7 @@ manpage.1: manpage.sgml
 		<userinput>ssl3=tty:/dev/tty2,xterm</userinput>
 	  </para>
 	  <para>See <ulink
-		url="file:///usr/share/doc/user-mode-linux-doc/html/input.html">Setting
+		url="file:///usr/share/doc/seine-uml-doc/html/input.html">Setting
 		up Serial Lines and Consoles</ulink> for a more information.
           </para>
         </listitem>
@@ -595,9 +595,9 @@ manpage.1: manpage.sgml
         <listitem>
           <para>
            Prints the configuration used to build the kernel.
-	   To print all the options used to build the "linux" uml kernel
+	   To print all the options used to build the seine-uml kernel
 	   and save them in "config_file" you can use
-	   <userinput>linux --showconfig &gt; config_file</userinput>
+	   <userinput>seine-uml --showconfig &gt; config_file</userinput>
           </para>
         </listitem>
       </varlistentry>
@@ -608,7 +608,7 @@ manpage.1: manpage.sgml
     <title>SEE ALSO</title>
 
     <para>The <ulink
-    url="file:///usr/share/doc/user-mode-linux-doc/html/UserModeLinux-HOWTO.html">UserModeLinux-HOWTO</ulink></para>
+    url="file:///usr/share/doc/seine-uml-doc/html/UserModeLinux-HOWTO.html">UserModeLinux-HOWTO</ulink></para>
 
   </refsect1>
   <refsect1>
@@ -617,7 +617,7 @@ manpage.1: manpage.sgml
     <para>User-mode Linux was written by Jeff Dike and others.</para>
 
     <para>This manual page was written by &dhusername; &dhemail; for
-      the &debian; system, based on <command>linux --help</command>
+      the &debian; system, based on <command>seine-uml --help</command>
       and the user-mode-linux website.
     </para>
 

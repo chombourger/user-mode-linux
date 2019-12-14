@@ -1,3 +1,9 @@
+seine-uml (4.19-buster5) buster; urgency=medium
+
+  * Rename source and binary package to seine-uml 
+
+ -- Cedric Hombourger <chombourger@gmail.com>  Sat, 14 Dec 2019 22:23:54 +0100
+
 user-mode-linux (1:4.19-buster4) buster; urgency=medium
 
   * Enable the NILFS2 file-system as a built-in module
