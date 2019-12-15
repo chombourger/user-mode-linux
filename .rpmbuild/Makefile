@@ -8,11 +8,11 @@ SHORT_COMMIT ?= $(shell git rev-parse --short=8 HEAD)
 srpm:
 	mkdir -p $(topdir)
 	sh $(current_dir)/prepare.sh
-	rpmbuild -bs -D "dist %{nil}" -D "_sourcedir build/" -D "_srcrpmdir $(outdir)" -D "_topdir $(topdir)" --nodeps contrib/spec/user-mode-linux.spec
+	rpmbuild -bs -D "dist %{nil}" -D "_sourcedir build/" -D "_srcrpmdir $(outdir)" -D "_topdir $(topdir)" --nodeps contrib/spec/seine-uml.spec
 
 build_binary:
 	mkdir -p $(topdir)
-	rpmbuild --rebuild -D "_rpmdir $(outdir)" -D "_topdir $(topdir)" $(outdir)/user-mode-linux-*.git$(SHORT_COMMIT).src.rpm
+	rpmbuild --rebuild -D "_rpmdir $(outdir)" -D "_topdir $(topdir)" $(outdir)/seine-uml-*.git$(SHORT_COMMIT).src.rpm
 
 clean:
 	rm -fr rpms

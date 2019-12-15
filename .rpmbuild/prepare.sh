@@ -21,9 +21,9 @@ sed "s,#COMMIT#,${COMMIT},;
      s,#SHORTCOMMIT#,${COMMIT_SHORT},;
      s,#COMMITNUM#,${COMMIT_NUM},;
      s,#COMMITDATE#,${COMMIT_DATE}," \
-         contrib/spec/user-mode-linux.spec.in > contrib/spec/user-mode-linux.spec
+         contrib/spec/seine-uml.spec.in > contrib/spec/seine-uml.spec
 
 mkdir -p build/
-git archive --prefix "user-mode-linux-${COMMIT_SHORT}/" --format "tar.gz" HEAD -o "build/user-mode-linux-${COMMIT_SHORT}.tar.gz"
+git archive --prefix "seine-uml-${COMMIT_SHORT}/" --format "tar.gz" HEAD -o "build/seine-uml-${COMMIT_SHORT}.tar.gz"
 cd build
 wget -c https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.18.tar.xz
